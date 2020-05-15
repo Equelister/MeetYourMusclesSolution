@@ -30,7 +30,7 @@ namespace MYMUI
         {
             InitializeComponent();
             placesIDList = loadPlacesFromDataBase();
-            //putIntoPlacesListBoxPlacesList(placesIDList);
+            
         }
 
         private void addPlaceButton_Click(object sender, RoutedEventArgs e)
@@ -40,6 +40,7 @@ namespace MYMUI
             addNewPlaceToDataBase(place);
             //placesListBox.Items.Add(place.getCity()+place.getCity());   //send to database TO DO
             //
+            
             //update listbox from database
             placesIDList = loadPlacesFromDataBase();
             //putIntoPlacesListBoxPlacesList(placesIDList);
@@ -51,28 +52,18 @@ namespace MYMUI
             placesListBox.Items.Clear();
             using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
             {
-                //connection.ConnectionString = "User Id=<username>;Password=<password>;Data Source=<datasource>";
                 connection.Open();
                 testLabel.Content = "Connected to Oracle" + connection.ServerVersion + connection.DatabaseName;
-
-
-                //////////////////////////////
                 OracleCommand cmd;
-                OracleDataAdapter da;
-                OracleCommandBuilder cb;
-                DataSet ds;
-                //////////////////////////////
 
                 string sql = "select * from place_table";
                                 
                 cmd = new OracleCommand(sql, connection);
                 cmd.CommandType = CommandType.Text;
 
-                //connection.Open();
                 OracleDataReader reader = cmd.ExecuteReader();
                 try
                 {
-                    int i = 0;
                     while (reader.Read())
                     {
                         PlaceModel place = new PlaceModel();
@@ -97,7 +88,6 @@ namespace MYMUI
         {
             using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
             {
-                //connection.ConnectionString = "User Id=<username>;Password=<password>;Data Source=<datasource>";
                 connection.Open();
                 testLabel.Content = "Connected to Oracle" + connection.ServerVersion + connection.DatabaseName;
 
@@ -108,10 +98,6 @@ namespace MYMUI
                 cmd = new OracleCommand(sql, connection);
                 cmd.CommandType = CommandType.Text;
 
-                //connection.Open();
-   //             cmd.Parameters.Add("p1", dbType:OracleDbType.NVarchar2).Value = txtname.Text;
-     //           cmd.Parameters.Add("p2", dbType: OracleDbType.NVarchar2).Value = txtemail.Text;
-       //         cmd.Parameters.Add("p3", dbType: OracleDbType.NVarchar2).Value = txtpass.Text;
                 int rowsUpdated = cmd.ExecuteNonQuery();
                 if (rowsUpdated == 0)
                 {
@@ -125,17 +111,6 @@ namespace MYMUI
 
             }
         }
-
-
-        /*
-            private void putIntoPlacesListBoxPlacesList(List<PlaceModel> placesList)
-        {
-            foreach(PlaceModel place in placesList)
-            {
-                placesListBox.Items.Add(place.getCity() + place.getDescription()); ;
-            }
-        }
-        */
 
         /// <summary>
         /// TO DO 
@@ -153,28 +128,18 @@ namespace MYMUI
 
                 using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
                 {
-                    //connection.ConnectionString = "User Id=<username>;Password=<password>;Data Source=<datasource>";
                     connection.Open();
                     testLabel.Content = "Connected to Oracle" + connection.ServerVersion + connection.DatabaseName;
-
-
-                    //////////////////////////////
                     OracleCommand cmd;
-                    OracleDataAdapter da;
-                    OracleCommandBuilder cb;
-                    DataSet ds;
-                    //////////////////////////////
 
                     string sql = String.Format("select * from place_table WHERE ID = {0}", placesIDList.ElementAt(index));
 
                     cmd = new OracleCommand(sql, connection);
                     cmd.CommandType = CommandType.Text;
 
-                    //connection.Open();
                     OracleDataReader reader = cmd.ExecuteReader();
                     try
                     {
-                        int i = 0;
                         while (reader.Read())
                         {
                             place.setID(reader.GetInt32(0));
@@ -189,7 +154,6 @@ namespace MYMUI
                         reader.Close();
                     }
                 }
-
                 try
                 {
                     currentPlaceID = place.getID();

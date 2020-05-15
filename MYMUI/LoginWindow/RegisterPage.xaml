@@ -58,13 +58,13 @@
             <TextBox x:Name="emailTextBox"/>
 
             <TextBlock Text="Password" Margin="0,5,0,5"/>
-            <TextBox x:Name="passwordTextBox"/>
+            <PasswordBox x:Name="passwordPasswordBox"/>
 
             <TextBlock Text="Retype Password" Margin="0,5,0,5"/>
-            <TextBox x:Name="retypePasswordTextBlock"/>
+            <PasswordBox x:Name="retypePasswordPasswordBox"/>
 
             <TextBlock Text="Phone number" Margin="0,5,0,5"/>
-            <TextBox x:Name="phoneNumberTextBlock"/>
+            <TextBox x:Name="phoneNumberTextBox"/>
 
             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5" Margin="10,10,10,10" HorizontalAlignment="Center" Opacity="0.7">
                 <StackPanel Orientation="Horizontal" Margin="5">

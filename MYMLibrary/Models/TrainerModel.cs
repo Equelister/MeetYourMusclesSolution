@@ -18,7 +18,15 @@ namespace MYMLibrary
             PricePerHour = PricePerHourValue;
         }
 
+        public TrainerModel(String FirstNameValue, String LastNameValue, String EmailAddressValue, int PhoneNumberValue, int PricePerHourValue) : base(FirstNameValue, LastNameValue, EmailAddressValue, PhoneNumberValue)
+        {
+            PricePerHour = PricePerHourValue;
+        }
 
+        public TrainerModel(String FirstNameValue, String LastNameValue, String EmailAddressValue, int PhoneNumberValue) : base(FirstNameValue, LastNameValue, EmailAddressValue, PhoneNumberValue)
+        {
+            
+        }
 
     }
 }

@@ -10,7 +10,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using MYMLibrary;
+using MYMLibrary.DataBaseConnections;
+using MYMLibrary.Models;
 namespace MYMUI
 {
     /// <summary>
@@ -18,6 +20,8 @@ namespace MYMUI
     /// </summary>
     public partial class LoginPage : Page
     {
+        OracleSQLConnectorLoginWindow oracleSQLConnectorLoginWindow = new OracleSQLConnectorLoginWindow();
+
         public LoginPage()
         {
             InitializeComponent();
@@ -27,16 +31,49 @@ namespace MYMUI
         {
             //valudate with sql
             //login to user/trainer window
-
-            if(emailTextBox.Text.Equals("admin") && passwordTextBox.Text.Equals("admin1"))
+            bool emailFound = false;
+            int personID = oracleSQLConnectorLoginWindow.getIDFromDataBase("user_password_table", emailTextBox.Text.Trim());
+            if(personID>0)
             {
-                int indexOfUserIDTableFromUserPasswordTable = 0; // to do get from table after checking if login/pass are good
-
-
-                App.Current.MainWindow.Hide();
-                TrainerWindow trainerWindow = new TrainerWindow(indexOfUserIDTableFromUserPasswordTable);
-                trainerWindow.Show();
-                App.Current.MainWindow.Close();
+                emailFound = true;
+                if(passwordPasswordBox.Password.Equals(OracleSQLConnectorLoginWindow.getColumnFromDataBaseForID("password", "user_password_table", personID)))
+                {
+                    GlobalClass.setUserID(personID);
+                    App.Current.MainWindow.Hide();
+                    UserWindow userWindow = new UserWindow();
+                    userWindow.Show();
+                    App.Current.MainWindow.Close();
+                }else
+                {
+                    errorLabel.Content = "Wrong Password!";
+                    //label incorrect password
+                }
+            }
+            if (!emailFound)
+            {
+                personID = oracleSQLConnectorLoginWindow.getIDFromDataBase("trainer_password_table", emailTextBox.Text.Trim());
+                if (personID > 0)
+                {
+                    emailFound = true;
+                    if (passwordPasswordBox.Password.Equals(OracleSQLConnectorLoginWindow.getColumnFromDataBaseForID("password", "trainer_password_table", personID)))
+                    {
+                        GlobalClass.setTrainerID(personID);
+                        App.Current.MainWindow.Hide();
+                        TrainerWindow trainerWindow = new TrainerWindow();
+                        trainerWindow.Show();
+                        App.Current.MainWindow.Close();
+                    }
+                    else
+                    {
+                        errorLabel.Content = "Wrong Password!";
+                        // label incorrect password
+                    }
+                }
+            }
+            if(!emailFound)
+            {
+                errorLabel.Content = "Wrong Email!";
+                // label incorrect email
             }
 
         }

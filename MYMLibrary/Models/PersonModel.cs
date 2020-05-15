@@ -27,8 +27,39 @@ namespace MYMLibrary
             PhoneNumber = PhoneNumberValue;
         }
 
+        protected PersonModel(String FirstNameValue, String LastNameValue, String EmailAddressValue, int PhoneNumberValue)
+        {
+            FirstName = FirstNameValue;
+            LastName = LastNameValue;
+            EmailAddress = EmailAddressValue;
+            PhoneNumber = PhoneNumberValue;
+        }
 
 
+        public String getFirstName()
+        {
+            return this.FirstName;
+        }
+
+        public String getLastName()
+        {
+            return this.LastName;
+        }
+
+        public String getEmailAddress()
+        {
+            return this.EmailAddress;
+        }
+
+        public String getPhoneNumberStr()
+        {
+            return this.PhoneNumber.ToString();
+        }
+
+        public int getPhoneNumber()
+        {
+            return this.PhoneNumber;
+        }
 
     }
 }

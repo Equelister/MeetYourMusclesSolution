@@ -17,20 +17,11 @@ namespace MYMUI
     /// </summary>
     public partial class TrainerWindow : Window
     {
-
-        MYMLibrary.TrainerModel trainer = new MYMLibrary.TrainerModel(/* load from database */);
-
         CreateMeetingPage createMeetingPage = new CreateMeetingPage();
-        public TrainerWindow(int trainerID)
+
+        public TrainerWindow()
         {
             InitializeComponent();
-
-
-            //
-            //trainer.setID(trainerID);
-            //
-            // trainer = Select trainer from trainer where id = trainerid
-            //
         }
 
         private void Page0_Click(object sender, RoutedEventArgs e)

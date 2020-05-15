@@ -16,12 +16,14 @@
             <TextBox x:Name="emailTextBox"/>
 
             <TextBlock Text="Password" Margin="0,5,0,5"/>
-            <TextBox x:Name="passwordTextBox"/>
+            <PasswordBox x:Name="passwordPasswordBox"/>
 
             <Button x:Name="loginButton" Content="Login" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" 
                     MinWidth="70"
                     Margin="0,20,0,20" Click="loginButton_Click"/>
+
+            <Label x:Name="errorLabel" HorizontalAlignment="Center"/>
         </StackPanel>
 
 
