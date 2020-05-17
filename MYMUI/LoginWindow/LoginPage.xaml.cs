@@ -38,7 +38,7 @@ namespace MYMUI
                 emailFound = true;
                 if(passwordPasswordBox.Password.Equals(OracleSQLConnectorLoginWindow.getColumnFromDataBaseForID("password", "user_password_table", personID)))
                 {
-                    GlobalClass.setUserID(personID);
+                    GlobalClass.setUserID(oracleSQLConnectorLoginWindow.getIDFromDataBase("user_table", emailTextBox.Text.Trim()));
                     App.Current.MainWindow.Hide();
                     UserWindow userWindow = new UserWindow();
                     userWindow.Show();
@@ -57,7 +57,7 @@ namespace MYMUI
                     emailFound = true;
                     if (passwordPasswordBox.Password.Equals(OracleSQLConnectorLoginWindow.getColumnFromDataBaseForID("password", "trainer_password_table", personID)))
                     {
-                        GlobalClass.setTrainerID(personID);
+                        GlobalClass.setTrainerID(oracleSQLConnectorLoginWindow.getIDFromDataBase("trainer_table", emailTextBox.Text.Trim()));
                         App.Current.MainWindow.Hide();
                         TrainerWindow trainerWindow = new TrainerWindow();
                         trainerWindow.Show();

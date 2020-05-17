@@ -43,6 +43,11 @@ namespace MYMLibrary
                 Description = DescriptionValue;
         }
 
+        ~PlaceModel()
+        {
+
+        }
+
         public void setID(int newID)
         {
             this.ID = newID;
