@@ -17,7 +17,7 @@ namespace MYMUI
     /// </summary>
     public partial class TrainerWindow : Window
     {
-        CreateMeetingPage createMeetingPage = new CreateMeetingPage();
+        CreatePlacePage CreatePlacePage = new CreatePlacePage();
 
         public TrainerWindow()
         {
@@ -26,7 +26,7 @@ namespace MYMUI
 
         private void Page0_Click(object sender, RoutedEventArgs e)
         {
-            TrainerWindowFrame.Content = createMeetingPage;
+            TrainerWindowFrame.Content = CreatePlacePage;
         }
     }
 }

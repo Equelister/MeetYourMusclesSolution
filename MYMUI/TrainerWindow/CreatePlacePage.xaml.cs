@@ -27,12 +27,12 @@ namespace MYMUI
     /// currentlySelectedItemID - ID of selected object
     /// currentlySelectedListItemindex - List index of an selected object
     /// </summary>
-    public partial class CreateMeetingPage : Page
+    public partial class CreatePlacePage : Page
     {
         List<PlaceModel> placesList = new List<PlaceModel>();
         private int currentlySelectedItemID = -1;
         private int currentlySelectedListItemindex = -1;
-        public CreateMeetingPage()
+        public CreatePlacePage()
         {
             InitializeComponent();
             placesList = loadPlacesFromDataBase();
@@ -85,7 +85,7 @@ namespace MYMUI
 
                 OracleCommand cmd;
 
-                string sql = "select * from place_table";
+                string sql = String.Format("select * from place_table WHERE trainer_table_id = {0}", GlobalClass.getTrainerID());
 
                 cmd = new OracleCommand(sql, connection);
                 cmd.CommandType = CommandType.Text;
