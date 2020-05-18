@@ -29,13 +29,14 @@ namespace MYMUI
     /// </summary>
     public partial class CreatePlacePage : Page
     {
+        OracleSQLConnector oracleSQLConnector = new OracleSQLConnector();
         List<PlaceModel> placesList = new List<PlaceModel>();
         private int currentlySelectedItemID = -1;
         private int currentlySelectedListItemindex = -1;
         public CreatePlacePage()
         {
             InitializeComponent();
-            placesList = loadPlacesFromDataBase();
+            placesList = oracleSQLConnector.loadPlacesFromDataBase();
             putIntoPlacesListBoxPlacesList(placesList);
         }
 
@@ -76,42 +77,6 @@ namespace MYMUI
         /// Selects all rows from Oracle DataBase and inserts it to a List of Places
         /// </summary>
         /// <returns></returns>
-        public List<PlaceModel> loadPlacesFromDataBase()
-        {
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
-            {
-                connection.Open();
-                testLabel.Content = "Connected to Oracle" + connection.ServerVersion + connection.DatabaseName;
-
-                OracleCommand cmd;
-
-                string sql = String.Format("select * from place_table WHERE trainer_table_id = {0}", GlobalClass.getTrainerID());
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                OracleDataReader reader = cmd.ExecuteReader();
-                try
-                {
-                    int i = 0;
-                    while (reader.Read())
-                    {
-                        PlaceModel place = new PlaceModel();
-                        place.setID(reader.GetInt32(0));
-                        place.setCity(reader.GetString(1));
-                        place.setPostCode(reader.GetString(2));
-                        place.setStreet(reader.GetString(3));
-                        place.setDescription(reader.GetString(4));
-                        placesList.Add(place);
-                    }
-                }
-                finally
-                {
-                    reader.Close();
-                }
-            }
-            return placesList;
-        }
 
 
         /// <summary>

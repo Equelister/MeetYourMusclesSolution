@@ -10,7 +10,7 @@ namespace MYMLibrary
         protected String FirstName { get; set; }
         protected String LastName { get; set; }
         protected String EmailAddress { get; set; }
-        protected int PhoneNumber { get; set; }
+        protected String PhoneNumber { get; set; }
 
 
         protected PersonModel()
@@ -18,7 +18,7 @@ namespace MYMLibrary
 
         }
 
-        protected PersonModel(int IDValue, String FirstNameValue, String LastNameValue, String EmailAddressValue, int PhoneNumberValue)
+        protected PersonModel(int IDValue, String FirstNameValue, String LastNameValue, String EmailAddressValue, String PhoneNumberValue)
         {
             ID = IDValue;
             FirstName = FirstNameValue;
@@ -27,7 +27,7 @@ namespace MYMLibrary
             PhoneNumber = PhoneNumberValue;
         }
 
-        protected PersonModel(String FirstNameValue, String LastNameValue, String EmailAddressValue, int PhoneNumberValue)
+        protected PersonModel(String FirstNameValue, String LastNameValue, String EmailAddressValue, String PhoneNumberValue)
         {
             FirstName = FirstNameValue;
             LastName = LastNameValue;
@@ -35,7 +35,10 @@ namespace MYMLibrary
             PhoneNumber = PhoneNumberValue;
         }
 
-
+        public int getID()
+        {
+            return this.ID;
+        }
         public String getFirstName()
         {
             return this.FirstName;
@@ -53,13 +56,9 @@ namespace MYMLibrary
 
         public String getPhoneNumberStr()
         {
-            return this.PhoneNumber.ToString();
-        }
-
-        public int getPhoneNumber()
-        {
             return this.PhoneNumber;
         }
+
 
     }
 }

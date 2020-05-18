@@ -43,7 +43,6 @@ namespace MYMUI
             String lastNameValue = lastNameTextBox.Text.Trim();
             String emailValue = emailTextBox.Text.Trim();
             String phoneNumberStringValue = phoneNumberTextBox.Text.Trim();
-            int phoneNumberValue;
 
       
 
@@ -56,8 +55,6 @@ namespace MYMUI
                 success = false;
             if (!passwordPasswordBox.Password.Equals(retypePasswordPasswordBox.Password))
                 success = false;
-            if (!Int32.TryParse(phoneNumberStringValue, out phoneNumberValue))
-                success = false;
 
 
 
@@ -65,7 +62,7 @@ namespace MYMUI
             {
                 if (userRadioButton.IsChecked == true)
                 {
-                    UserModel u = new UserModel(firstNameValue, lastNameValue, emailValue, phoneNumberValue);
+                    UserModel u = new UserModel(firstNameValue, lastNameValue, emailValue, phoneNumberStringValue);
                     bool isEmailUnique = isUniqueValue("email", "user_password_table", emailValue);
 
                     if (isEmailUnique)
@@ -75,7 +72,7 @@ namespace MYMUI
                 }
                 else
                 {
-                    TrainerModel t = new TrainerModel(firstNameValue, lastNameValue, emailValue, phoneNumberValue);
+                    TrainerModel t = new TrainerModel(firstNameValue, lastNameValue, emailValue, phoneNumberStringValue);
                     bool isEmailUnique = isUniqueValue("email", "trainer_password_table", emailValue);
 
                     if (isEmailUnique)

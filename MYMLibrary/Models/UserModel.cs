@@ -11,12 +11,12 @@ namespace MYMLibrary
 
         }
 
-        public UserModel(int IDValue, String FirstNameValue, String LastNameValue, String EmailAddressValue, int PhoneNumberValue) : base(IDValue, FirstNameValue, LastNameValue, EmailAddressValue, PhoneNumberValue)
+        public UserModel(int IDValue, String FirstNameValue, String LastNameValue, String EmailAddressValue, String PhoneNumberValue) : base(IDValue, FirstNameValue, LastNameValue, EmailAddressValue, PhoneNumberValue)
         {
             
         }
 
-        public UserModel(String FirstNameValue, String LastNameValue, String EmailAddressValue, int PhoneNumberValue) : base(FirstNameValue, LastNameValue, EmailAddressValue, PhoneNumberValue)
+        public UserModel(String FirstNameValue, String LastNameValue, String EmailAddressValue, String PhoneNumberValue) : base(FirstNameValue, LastNameValue, EmailAddressValue, PhoneNumberValue)
         {
 
         }

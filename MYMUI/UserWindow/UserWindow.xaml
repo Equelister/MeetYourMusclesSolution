@@ -5,8 +5,72 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MYMUI"
         mc:Ignorable="d"
-        Title="UserWindow" Height="450" Width="800">
+        Title="UserWindow" Height="720" Width="1280" MinHeight="720" MinWidth="1280">
     <Grid>
-        
+
+
+        <Button x:Name="Page0" Content="Page 0" MinWidth="100" MinHeight="40" Width="Auto" Height="Auto"
+                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                
+                Margin="20"/>
+
+        <Button x:Name="Page1" Content="Page 1" MinWidth="100" MinHeight="40"
+                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                
+                Margin="20" Click="Page1_Click"/>
+
+        <Button x:Name="Page2" Content="Page 2" MinWidth="100" MinHeight="40"
+                Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                
+                Margin="20"/>
+
+
+
+
+
+        <Frame x:Name="UserWindowFrame" NavigationUIVisibility="Hidden" 
+               Grid.Column="2" Grid.ColumnSpan="12" 
+               Grid.Row="0" Grid.RowSpan="16" />
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+
     </Grid>
 </Window>

@@ -17,9 +17,17 @@ namespace MYMUI
     /// </summary>
     public partial class UserWindow : Window
     {
+        CreateMeetingPage createMeetingPage = new CreateMeetingPage();
+
         public UserWindow()
         {
             InitializeComponent();
+        }
+
+        private void Page1_Click(object sender, RoutedEventArgs e)
+        {
+            UserWindowFrame.Content = createMeetingPage;
+
         }
     }
 }
