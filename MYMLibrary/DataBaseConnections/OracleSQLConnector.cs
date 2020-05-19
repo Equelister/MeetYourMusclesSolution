@@ -50,5 +50,36 @@ namespace MYMLibrary
             }
             return placesList;
         }
+
+        public UserModel loadUserFromDataBase()
+        {
+            UserModel user = new UserModel();
+            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
+            {
+                connection.Open();
+
+                OracleCommand cmd;
+
+                string sql = String.Format("select * from user_table WHERE id = {0}", GlobalClass.getUserID());
+
+                cmd = new OracleCommand(sql, connection);
+                cmd.CommandType = CommandType.Text;
+
+                OracleDataReader reader = cmd.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        user = new UserModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
+                    }
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            return user;
+        }
+
     }
 }

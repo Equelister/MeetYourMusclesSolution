@@ -94,6 +94,11 @@ namespace MYMLibrary
             return this.Description;
         }
 
+        public String getFullDetails()
+        {
+            return getCity() + ", " + getPostCode() + ", " + getStreet() + ", " + getDescription();
+        }
+
 
     }
 }

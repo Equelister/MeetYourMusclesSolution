@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MYMUI"
         mc:Ignorable="d"
-        Title="TrainerWindow" Height="720" Width="1280">
+        Title="TrainerWindow" Height="720" Width="1280"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
         <Button x:Name="Page0" Content="Page 0" MinWidth="100" MinHeight="40" Width="Auto" Height="Auto"

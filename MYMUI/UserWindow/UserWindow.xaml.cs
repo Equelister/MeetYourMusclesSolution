@@ -17,6 +17,7 @@ namespace MYMUI
     /// </summary>
     public partial class UserWindow : Window
     {
+        MainUserPage mainUserPage = new MainUserPage();
         CreateMeetingPage createMeetingPage = new CreateMeetingPage();
 
         public UserWindow()
@@ -28,6 +29,11 @@ namespace MYMUI
         {
             UserWindowFrame.Content = createMeetingPage;
 
+        }
+
+        private void Page0_Click(object sender, RoutedEventArgs e)
+        {
+            UserWindowFrame.Content = mainUserPage;
         }
     }
 }

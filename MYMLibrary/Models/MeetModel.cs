@@ -71,11 +71,6 @@ namespace MYMLibrary
             return this.DateAndHour.ToString();
         }
 
-        public String getDateAndHourStrOracleDateFormat()
-        {
-            return "..."; //TO_DATE('2015/05/15 8:30:25', 'YYYY/MM/DD HH:MI:SS')
-        }
-
         public int getDuration()
         {
             return this.Duration;

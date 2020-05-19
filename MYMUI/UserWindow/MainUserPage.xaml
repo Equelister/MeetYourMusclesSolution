@@ -1,0 +1,99 @@
+﻿<Page x:Class="MYMUI.MainUserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MYMUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1100"
+      Title="MainUserPage">
+
+    <Grid>
+
+
+        <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Top">
+            <Button Content="FUTURE CONTENT Avatar" MinHeight="150" MinWidth="150" MaxHeight="250" MaxWidth="250" HorizontalAlignment="Left"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Welcome: "/>
+                <TextBlock x:Name="userNameTextBlock"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Email: "/>
+                <TextBlock x:Name="userEmailTextBlock"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Phone Number: "/>
+                <TextBlock x:Name="userPhoneNumberTextBlock"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom">
+            <TextBlock Text="Trainer:" Margin="0,5,0,5"/>
+            <TextBox x:Name="trainerTextBox" IsReadOnly="True"/>
+            
+            <TextBlock Text="Trainer Phone Number:" Margin="0,5,0,5"/>
+            <TextBox x:Name="trainerPhoneNumberTextBox" IsReadOnly="True"/>
+
+            <TextBlock Text="Place:" Margin="0,5,0,5"/>
+            <TextBox x:Name="placeTextBox" IsReadOnly="True"/>
+
+            <TextBlock Text="Date and Hour:" Margin="0,5,0,5"/>
+            <TextBox x:Name="dateAndHourTextBox" IsReadOnly="True"/>
+        </StackPanel>
+        
+        
+        
+        <TextBlock x:Name="acceptedMeetingsTextBlock" Grid.Row="1" Grid.Column="5" VerticalAlignment="Bottom" 
+                   Text="Accepted Meetings:"/>
+        <ListBox x:Name="acceptedMeetingsListBox" Grid.Row="2" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4" SelectionChanged="acceptedMeetingsListBox_SelectionChanged" 
+                 SelectedItem="Mode=OneWayToSource">
+        </ListBox>
+
+
+        <TextBlock x:Name="pendingMeetingsTextBlock" Grid.Row="4" Grid.Column="5" VerticalAlignment="Bottom" 
+                   Text="Pending Meetings:"/>
+        <ListBox x:Name="pendingMeetingsListBox" Grid.Row="5" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4" SelectionChanged="pendingMeetingsListBox_SelectionChanged" 
+                 >
+        </ListBox>
+
+        <Button x:Name="refreshButton" Grid.Row="8" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Top"
+                MinHeight="20" MinWidth="60" MaxHeight="30" MaxWidth="80"
+                Content="Refresh" Click="refreshButton_Click" />
+
+
+
+
+
+
+
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+
+    </Grid>
+</Page>

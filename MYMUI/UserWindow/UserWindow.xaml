@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MYMUI"
         mc:Ignorable="d"
-        Title="UserWindow" Height="720" Width="1280" MinHeight="720" MinWidth="1280">
+        Title="UserWindow" Height="720" Width="1280" MinHeight="720" MinWidth="1280"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
 
         <Button x:Name="Page0" Content="Page 0" MinWidth="100" MinHeight="40" Width="Auto" Height="Auto"
                 Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
                 
-                Margin="20"/>
+                Margin="20" Click="Page0_Click"/>
 
         <Button x:Name="Page1" Content="Page 1" MinWidth="100" MinHeight="40"
                 Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
