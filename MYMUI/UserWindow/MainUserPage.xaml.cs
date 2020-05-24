@@ -51,8 +51,8 @@ namespace MYMUI
         {
             loadAllMeetingsFromDataBase();
             separeteAcceptedFromPendingLists();
-            putIntoacceptedMeetingsListBoxTrainerList(acceptedMeetingsList);
-            putIntopendingMeetingsListBoxTrainerList(pendingMeetingsList);
+            putIntoacceptedMeetingsListBoxTrainerList();
+            putIntopendingMeetingsListBoxTrainerList();
         }
 
         private void acceptedMeetingsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -152,7 +152,7 @@ namespace MYMUI
 
 
 
-        private void putIntoacceptedMeetingsListBoxTrainerList(List<MeetModel> meetingList)
+        private void putIntoacceptedMeetingsListBoxTrainerList()
         {
             TrainerModel trainer = new TrainerModel();
             for(int i=0; i < acceptedMeetingsList.Count; i++)
@@ -162,7 +162,7 @@ namespace MYMUI
             }
         }
 
-        private void putIntopendingMeetingsListBoxTrainerList(List<MeetModel> meetingList)
+        private void putIntopendingMeetingsListBoxTrainerList()
         {
             TrainerModel trainer = new TrainerModel();
             for (int i = 0; i < pendingMeetingsList.Count; i++)

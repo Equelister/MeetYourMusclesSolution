@@ -42,6 +42,7 @@ namespace MYMLibrary.DataBaseConnections
             return -1;
         }
 
+        /*
         public static String getColumnFromDataBaseForID(String columnName, String tableName, int personID)
         {
             String password;
@@ -73,6 +74,41 @@ namespace MYMLibrary.DataBaseConnections
                 }
             }
             return password;
+        }
+        */
+
+        public PersonModel getAllFromDataBaseForEmail(String tableName, String email, out int personTableID)
+        {
+            PersonModel person = new PersonModel();
+            personTableID = -1;
+            using (OracleConnection connection = new OracleConnection(OracleSQLConnectorLoginWindow.GetConnectionString()))
+            {
+                connection.Open();
+                OracleCommand cmd;
+
+                string sql = String.Format("select * from {0} WHERE email LIKE '{1}'", tableName, email);
+
+                cmd = new OracleCommand(sql, connection);
+                cmd.CommandType = CommandType.Text;
+
+                OracleDataReader reader = cmd.ExecuteReader();
+                try
+                {
+                    if (reader.Read())
+                    {
+                        person.setID(reader.GetInt32(0));
+                        person.setPassword(reader.GetString(1));
+                        personTableID = reader.GetInt32(2);
+                        person.setEmailAddress(reader.GetString(3));
+
+                    }
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            return person;
         }
     }
 }

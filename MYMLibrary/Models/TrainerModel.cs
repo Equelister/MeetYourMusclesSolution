@@ -25,33 +25,9 @@ namespace MYMLibrary
 
         public TrainerModel(String FirstNameValue, String LastNameValue, String EmailAddressValue, String PhoneNumberValue) : base(FirstNameValue, LastNameValue, EmailAddressValue, PhoneNumberValue)
         {
-            
+
         }
 
-        public void setID(int newID)
-        {
-            this.ID = newID;
-        }
-
-        public void setFirstName(String newFirstName)
-        {
-            this.FirstName = newFirstName;
-        }
-
-        public void setLastName (String newLastName)
-        {
-            this.LastName = newLastName;
-        }
-
-        public void setEmailAddress(String newEmailAddress)
-        {
-            this.EmailAddress = newEmailAddress;
-        }
-
-        public void setPhoneNumber(String newPhoneNumber)
-        {
-            this.PhoneNumber = newPhoneNumber;
-        }
 
 
         public void setPricePerhour(int newPricePerHour)
@@ -59,6 +35,10 @@ namespace MYMLibrary
             this.PricePerHour = newPricePerHour;
         }
 
+        public int getPricePerHour()
+        {
+            return this.PricePerHour;
+        }
 
 
 

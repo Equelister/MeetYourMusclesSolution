@@ -4,6 +4,7 @@ using System.Data;
 using System.Text;
 using MYMLibrary.Models;
 using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
 
 namespace MYMLibrary
 {
@@ -14,7 +15,10 @@ namespace MYMLibrary
             return "User Id=projektcsoracle; Password=haslo2020; Data Source=localhost:1521/xe";
         }
 
-
+        /// <summary>
+        /// Loads all places for currently logged in traienr
+        /// </summary>
+        /// <returns></returns>
         public List<PlaceModel> loadPlacesFromDataBase()
         {
             List<PlaceModel> placesList = new List<PlaceModel>();
@@ -51,6 +55,10 @@ namespace MYMLibrary
             return placesList;
         }
 
+        /// <summary>
+        /// Loads current logged in User Data
+        /// </summary>
+        /// <returns></returns>
         public UserModel loadUserFromDataBase()
         {
             UserModel user = new UserModel();
@@ -81,5 +89,45 @@ namespace MYMLibrary
             return user;
         }
 
+        /// <summary>
+        /// Load currently logged in Trainer Data
+        /// </summary>
+        /// <returns></returns>
+        public TrainerModel loadTrainerFromDataBase()
+        {
+            TrainerModel trainer = new TrainerModel();
+            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
+            {
+                connection.Open();
+
+                OracleCommand cmd;
+
+                string sql = String.Format("select * from trainer_table WHERE id = {0}", GlobalClass.getTrainerID());
+
+                cmd = new OracleCommand(sql, connection);
+                cmd.CommandType = CommandType.Text;
+
+                OracleDataReader reader = cmd.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        trainer = new TrainerModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
+                        try
+                        {
+                            trainer.setPricePerhour(reader.GetInt32(5));
+                        }catch
+                        {
+                            trainer.setPricePerhour(0);
+                        }
+                    }
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            return trainer;
+        }
     }
 }

@@ -4,16 +4,17 @@ using System.Text;
 
 namespace MYMLibrary
 {
-    public abstract class PersonModel
+    public class PersonModel
     {
         protected int ID { get; set; }
         protected String FirstName { get; set; }
         protected String LastName { get; set; }
         protected String EmailAddress { get; set; }
         protected String PhoneNumber { get; set; }
+        protected String Password;
 
 
-        protected PersonModel()
+        public PersonModel()
         {
 
         }
@@ -59,6 +60,44 @@ namespace MYMLibrary
             return this.PhoneNumber;
         }
 
+        public String getPassword()
+        {
+            return this.Password;
+        }
 
+        public void setID(int newID)
+        {
+            this.ID = newID;
+        }
+
+        public void setFirstName(String newFirstName)
+        {
+            this.FirstName = newFirstName;
+        }
+
+        public void setLastName(String newLastName)
+        {
+            this.LastName = newLastName;
+        }
+
+        public void setEmailAddress(String newEmailAddress)
+        {
+            this.EmailAddress = newEmailAddress;
+        }
+
+        public void setPhoneNumber(String newPhoneNumber)
+        {
+            this.PhoneNumber = newPhoneNumber;
+        }
+
+        public void setPassword(String newPassword)
+        {
+            this.Password = newPassword;
+        }
+
+        public String getFullName()
+        {
+            return getFirstName() + " " + getLastName();
+        }
     }
 }

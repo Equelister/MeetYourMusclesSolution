@@ -21,10 +21,7 @@ namespace MYMLibrary
 
         }
 
-        public String getFullName()
-        {
-            return getFirstName() + " " + getLastName();
-        }
+
 
     }
 }

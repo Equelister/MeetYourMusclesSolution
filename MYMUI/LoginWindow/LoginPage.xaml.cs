@@ -29,6 +29,42 @@ namespace MYMUI
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
+            PersonModel person = oracleSQLConnectorLoginWindow.getAllFromDataBaseForEmail("user_password_table", emailTextBox.Text.Trim(), out int personTableID);
+            if (personTableID >= 0)
+            {
+                if (passwordPasswordBox.Password.Equals(person.getPassword()) && emailTextBox.Text.Equals(person.getEmailAddress()))
+                {
+                    GlobalClass.setUserID(personTableID);
+                    App.Current.MainWindow.Hide();
+                    UserWindow userWindow = new UserWindow();
+                    userWindow.Show();
+                    App.Current.MainWindow.Close();
+                }
+            }
+            else
+            {
+                person = oracleSQLConnectorLoginWindow.getAllFromDataBaseForEmail("trainer_password_table", emailTextBox.Text.Trim(), out personTableID);
+                if (personTableID >= 0)
+                {
+                    if (passwordPasswordBox.Password.Equals(person.getPassword()) && emailTextBox.Text.Equals(person.getEmailAddress()))
+                    {
+                        GlobalClass.setTrainerID(personTableID);
+                        App.Current.MainWindow.Hide();
+                        TrainerWindow trainerWindow = new TrainerWindow();
+                        trainerWindow.Show();
+                        App.Current.MainWindow.Close();
+                    }
+                }else
+                {
+                    errorLabel.Content = "Invalid Data!";
+                }
+            }
+
+
+
+
+            /*
+
             //valudate with sql
             //login to user/trainer window
             bool emailFound = false;
@@ -75,6 +111,8 @@ namespace MYMUI
                 errorLabel.Content = "Wrong Email!";
                 // label incorrect email
             }
+
+    */
 
         }
     }

@@ -1,0 +1,119 @@
+﻿<Page x:Class="MYMUI.MainTrainerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MYMUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1100"
+      Title="MainTrainerPage">
+
+    <Grid>
+
+
+        <StackPanel Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Top">
+            <Button Content="FUTURE CONTENT Avatar" MinHeight="150" MinWidth="150" MaxHeight="250" MaxWidth="250" HorizontalAlignment="Left"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Welcome: "/>
+                <TextBlock x:Name="trainerNameTextBlock"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Email: "/>
+                <TextBlock x:Name="trainerEmailTextBlock"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Phone Number: "/>
+                <TextBlock x:Name="trainerPhoneNumberTextBlock"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom">
+            <TextBlock Text="Client:" Margin="0,5,0,5"/>
+            <TextBox x:Name="userTextBox" IsReadOnly="True"/>
+
+            <TextBlock Text="Client Phone Number:" Margin="0,5,0,5"/>
+            <TextBox x:Name="userPhoneNumberTextBox" IsReadOnly="True"/>
+
+            <TextBlock Text="Place:" Margin="0,5,0,5"/>
+            <TextBox x:Name="placeTextBox" IsReadOnly="True"/>
+
+            <TextBlock Text="Date and Hour:" Margin="0,5,0,5"/>
+            <TextBox x:Name="dateAndHourTextBox" IsReadOnly="True"/>
+        </StackPanel>
+
+
+        <TextBlock x:Name="acceptedMeetingsTextBlock" Grid.Row="0" Grid.Column="5" VerticalAlignment="Bottom" 
+                   Text="Accepted Meetings:"/>
+        <ListBox x:Name="acceptedMeetingsListBox" Grid.Row="1" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4"  
+                 >
+        </ListBox>
+
+        <Button x:Name="toAcceptedListButton" Grid.Row="3" Grid.RowSpan="1" Grid.Column="6" Grid.ColumnSpan="2" 
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                MinHeight="30" MinWidth="30"
+                Content="^"/>
+
+        <TextBlock x:Name="pendingMeetingsTextBlock" Grid.Row="3" Grid.Column="5" VerticalAlignment="Bottom" 
+                   Text="Pending Meetings:"/>
+        <ListBox x:Name="pendingMeetingsListBox" Grid.Row="4" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4"  
+                 >
+        </ListBox>
+
+        <Button x:Name="toDeclinedListButton" Grid.Row="6" Grid.RowSpan="1" Grid.Column="6" Grid.ColumnSpan="2" 
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                MinHeight="30" MinWidth="30"
+                Content="v"/>
+
+        <TextBlock x:Name="declinedMeetingsTextBlock" Grid.Row="6" Grid.Column="5" VerticalAlignment="Bottom" 
+                   Text="Declined Meetings:"/>
+        <ListBox x:Name="declinedMeetingsListBox" Grid.Row="7" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4"  
+                 >
+        </ListBox>
+
+
+        <Button x:Name="sendToDBButton" Grid.Row="10" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Top"
+                MinHeight="20" MinWidth="60" MaxHeight="30" MaxWidth="80"
+                Content="Update"/>
+
+
+
+
+
+
+
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+
+
+    </Grid>
+</Page>

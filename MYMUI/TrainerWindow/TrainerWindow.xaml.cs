@@ -18,13 +18,19 @@ namespace MYMUI
     public partial class TrainerWindow : Window
     {
         CreatePlacePage CreatePlacePage = new CreatePlacePage();
-
+        MainTrainerPage mainTrainerPage = new MainTrainerPage();
         public TrainerWindow()
         {
             InitializeComponent();
+            TrainerWindowFrame.Content = mainTrainerPage;
         }
 
         private void Page0_Click(object sender, RoutedEventArgs e)
+        {
+            TrainerWindowFrame.Content = mainTrainerPage;
+        }
+
+        private void Page1_Click(object sender, RoutedEventArgs e)
         {
             TrainerWindowFrame.Content = CreatePlacePage;
         }
