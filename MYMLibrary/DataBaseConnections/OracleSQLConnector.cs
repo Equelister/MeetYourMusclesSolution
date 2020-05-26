@@ -88,6 +88,40 @@ namespace MYMLibrary
             }
             return user;
         }
+        public PlaceModel loadPlaceFromDataBase(int placeID)
+        {
+            PlaceModel place = new PlaceModel();
+            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
+            {
+                connection.Open();
+                //testLabel.Content = "Connected to Oracle" + connection.ServerVersion + connection.DatabaseName;
+
+                OracleCommand cmd;
+
+                string sql = String.Format("select * from place_table WHERE id = {0}", placeID);
+
+                cmd = new OracleCommand(sql, connection);
+                cmd.CommandType = CommandType.Text;
+
+                OracleDataReader reader = cmd.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        place.setID(reader.GetInt32(0));
+                        place.setCity(reader.GetString(1));
+                        place.setPostCode(reader.GetString(2));
+                        place.setStreet(reader.GetString(3));
+                        place.setDescription(reader.GetString(4));
+                    }
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            return place;
+        }
 
         /// <summary>
         /// Load currently logged in Trainer Data

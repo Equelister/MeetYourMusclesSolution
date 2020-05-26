@@ -45,29 +45,50 @@
         <TextBlock x:Name="acceptedMeetingsTextBlock" Grid.Row="0" Grid.Column="5" VerticalAlignment="Bottom" 
                    Text="Accepted Meetings:"/>
         <ListBox x:Name="acceptedMeetingsListBox" Grid.Row="1" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4"  
-                 >
+                 ItemsSource="{Binding}" SelectionChanged="acceptedMeetingsListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <TextBlock Text="{Binding DateAndHour}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <Button x:Name="toAcceptedListButton" Grid.Row="3" Grid.RowSpan="1" Grid.Column="6" Grid.ColumnSpan="2" 
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 MinHeight="30" MinWidth="30"
-                Content="^"/>
+                Content="^" Click="toAcceptedListButton_Click"/>
 
         <TextBlock x:Name="pendingMeetingsTextBlock" Grid.Row="3" Grid.Column="5" VerticalAlignment="Bottom" 
                    Text="Pending Meetings:"/>
         <ListBox x:Name="pendingMeetingsListBox" Grid.Row="4" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4"  
-                 >
+                 ItemsSource="{Binding}" SelectionChanged="pendingMeetingsListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <TextBlock Text="{Binding DateAndHour}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <Button x:Name="toDeclinedListButton" Grid.Row="6" Grid.RowSpan="1" Grid.Column="6" Grid.ColumnSpan="2" 
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 MinHeight="30" MinWidth="30"
-                Content="v"/>
+                Content="v" Click="toDeclinedListButton_Click"/>
 
         <TextBlock x:Name="declinedMeetingsTextBlock" Grid.Row="6" Grid.Column="5" VerticalAlignment="Bottom" 
                    Text="Declined Meetings:"/>
         <ListBox x:Name="declinedMeetingsListBox" Grid.Row="7" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4"  
-                 >
+                 ItemsSource="{Binding}" SelectionChanged="declinedMeetingsListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <TextBlock Text="{Binding DateAndHour}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
 

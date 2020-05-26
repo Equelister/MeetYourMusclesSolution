@@ -6,14 +6,14 @@ namespace MYMLibrary
 {
     public class MeetModel
     {
-        private int ID { get; set; }
-        private int IDUser { get; set; }
-        private int IDTrainer { get; set; }
-        private int IDPlace { get; set; }
-        private DateTime DateAndHour { get; set; }
-        private int Duration { get; set; }
-        private int Accepted { get; set; }
-        private int New { get; set; }
+        public int ID { get; set; }
+        public int IDUser { get; set; }
+        public int IDTrainer { get; set; }
+        public int IDPlace { get; set; }
+        public DateTime DateAndHour { get; set; }
+        public int Duration { get; set; }
+        public int Accepted { get; set; }
+        public int New { get; set; }
 
 
         public MeetModel()
