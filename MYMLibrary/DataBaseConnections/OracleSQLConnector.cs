@@ -88,6 +88,7 @@ namespace MYMLibrary
             }
             return user;
         }
+
         public PlaceModel loadPlaceFromDataBase(int placeID)
         {
             PlaceModel place = new PlaceModel();
@@ -162,6 +163,86 @@ namespace MYMLibrary
                 }
             }
             return trainer;
+        }
+
+        public TrainerModel loadTrainerFromDataBase(int trainerID)
+        {
+            TrainerModel trainer = new TrainerModel();
+            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
+            {
+                connection.Open();
+
+                OracleCommand cmd;
+
+                string sql = String.Format("select * from trainer_table WHERE id = {0}", trainerID);
+
+                cmd = new OracleCommand(sql, connection);
+                cmd.CommandType = CommandType.Text;
+
+                OracleDataReader reader = cmd.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        trainer = new TrainerModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
+                        try
+                        {
+                            trainer.setPricePerhour(reader.GetInt32(5));
+                        }
+                        catch
+                        {
+                            trainer.setPricePerhour(0);
+                        }
+                    }
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            return trainer;
+        }
+
+
+        public List<MeetModel> loadAllMeetingsFromDataBase(int ID, String tableName)
+        {
+            List<MeetModel> meetingList = new List<MeetModel>();
+            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
+            {
+                connection.Open();
+                //testLabel.Content = "Connected to Oracle" + connection.ServerVersion + connection.DatabaseName;
+
+                OracleCommand cmd;
+
+                string sql = String.Format("select * from meet_table WHERE {1}_table_id = {0}", ID, tableName);
+
+                cmd = new OracleCommand(sql, connection);
+                cmd.CommandType = CommandType.Text;
+
+                OracleDataReader reader = cmd.ExecuteReader();
+                try
+                {
+                    while (reader.Read())
+                    {
+                        MeetModel meeting = new MeetModel(
+                            reader.GetInt32(0),
+                            reader.GetInt32(5),
+                            reader.GetInt32(6),
+                            reader.GetInt32(7),
+                            reader.GetDateTime(1),
+                            reader.GetInt32(2),
+                            reader.GetInt32(3),
+                            reader.GetInt32(4));
+                        if (meeting.getDateAndHour() > DateTime.Now)
+                            meetingList.Add(meeting);
+                    }
+                }
+                finally
+                {
+                    reader.Close();
+                }
+            }
+            return meetingList;
         }
     }
 }

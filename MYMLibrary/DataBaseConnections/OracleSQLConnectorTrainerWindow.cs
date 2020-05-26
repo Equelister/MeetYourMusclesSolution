@@ -1,4 +1,5 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using MYMLibrary.Models;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -32,8 +33,65 @@ namespace MYMLibrary.DataBaseConnections
         }
 
 
+        /// <summary>
+        /// Sends object to Oracle DataBase for an update.
+        /// </summary>
+        /// <param name="place"></param>
+        /// <returns></returns>
+        public bool updatedPlaceToDataBase(PlaceModel place, int currentlySelectedItemID)
+        {
+            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
+            {
+                connection.Open();
+                OracleCommand cmd;
+                string sql = String.Format(
+                        "UPDATE place_table SET city = '{0}', postcode = '{1}', street = '{2}', description = '{3}' WHERE id = {4}",
+                        place.getCity(), place.getPostCode(), place.getStreet(), place.getDescription(), currentlySelectedItemID);
+                cmd = new OracleCommand(sql, connection);
+                cmd.CommandType = CommandType.Text;
+
+                int rowsUpdated = cmd.ExecuteNonQuery();
+                if (rowsUpdated == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
 
 
+        /// <summary>
+        /// Inserts object into Oracle DataBase and returns its ID
+        /// </summary>
+        /// <param name="place"></param>
+        /// <returns></returns>
+        public int insertPlaceToDBReturnItsID(PlaceModel place)
+        {
+            int output = -1;
+            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
+            {
+                connection.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.CommandText = String.Format(
+                                "INSERT INTO place_table(city, postcode, street, description, trainer_table_id) VALUES('{0}', '{1}', '{2}', '{3}', {4}) RETURNING id INTO :id",
+                                place.getCity(), place.getPostCode(), place.getStreet(), place.getDescription(), GlobalClass.getTrainerID());
+                cmd.Connection = connection;
+
+                cmd.Parameters.Add(new OracleParameter
+                {
+                    ParameterName = ":id",
+                    OracleDbType = OracleDbType.Int32,
+                    Direction = ParameterDirection.Output
+                });
+                cmd.ExecuteNonQuery();
+                String outputStr = cmd.Parameters[":id"].Value.ToString();
+                output = Convert.ToInt32(outputStr);
+            }
+            return output;
+        }
 
     }
 }

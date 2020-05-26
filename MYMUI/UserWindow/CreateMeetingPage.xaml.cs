@@ -24,18 +24,17 @@ namespace MYMUI
     /// </summary>
     public partial class CreateMeetingPage : Page
     {
-        OracleSQLConnector oracleSQLConnector = new OracleSQLConnector();
         List<TrainerModel> trainerList = new List<TrainerModel>();
         List<PlaceModel> placeList = new List<PlaceModel>();
-
-        int currentlySelectedTrainerListItemindex = -1;
+         
         int currentlySelectedTrainerItemID = -1;
-        int currentlySelectedPlaceListItemindex = -1;
         int currentlySelectedPlaceItemID = -1;
+
         public CreateMeetingPage()
         {
             InitializeComponent();
-            trainerList = loadAllTrainersFromDataBase();
+            OracleSQLConnectorUserWindow oraclesql = new OracleSQLConnectorUserWindow();
+            trainerList = oraclesql.loadAllTrainersFromDataBase();
             putIntoTrainersListBoxTrainerList(trainerList);
         }
 
@@ -43,20 +42,21 @@ namespace MYMUI
 
         private void trainersListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (trainersListBox.Items.IndexOf(trainersListBox.SelectedItem) >= 0)
-            {
-                currentlySelectedTrainerListItemindex = trainersListBox.Items.IndexOf(trainersListBox.SelectedItem);
-            }
-            currentlySelectedTrainerItemID = trainerList[currentlySelectedTrainerListItemindex].getID();
-            trainerTextBox.Text = trainerList.ElementAt(currentlySelectedTrainerListItemindex).getFirstName() + " " 
-                + trainerList.ElementAt(currentlySelectedTrainerListItemindex).getLastName() + ", "
-                + trainerList.ElementAt(currentlySelectedTrainerListItemindex).getPhoneNumberStr();
+            OracleSQLConnector oracleSQLConnector = new OracleSQLConnector();
 
+            if (trainersListBox.SelectedIndex >= 0)
+            {
+                currentlySelectedTrainerItemID = trainerList[trainersListBox.SelectedIndex].getID();
+                trainerTextBox.Text = trainerList.ElementAt(trainersListBox.SelectedIndex).getFirstName() + " "
+                    + trainerList.ElementAt(trainersListBox.SelectedIndex).getLastName() + ", "
+                    + trainerList.ElementAt(trainersListBox.SelectedIndex).getPhoneNumberStr();
+            }
 
 
             GlobalClass.setTrainerID(currentlySelectedTrainerItemID);
             currentlySelectedPlaceItemID = -1;
-            currentlySelectedPlaceListItemindex = -1;
+            placesListBox.UnselectAll();
+            placesListBox.SelectedIndex = -1;
 
 
             placeList.Clear();
@@ -67,13 +67,12 @@ namespace MYMUI
 
         private void placesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (placesListBox.Items.IndexOf(placesListBox.SelectedItem) >= 0)
+            if (placesListBox.SelectedIndex >= 0)
             {
-                currentlySelectedPlaceListItemindex = placesListBox.Items.IndexOf(placesListBox.SelectedItem);
-                placeTextBox.Text = placeList.ElementAt(currentlySelectedPlaceListItemindex).getCity() + ", " 
-                    + placeList.ElementAt(currentlySelectedPlaceListItemindex).getPostCode() + ", " 
-                    + placeList.ElementAt(currentlySelectedPlaceListItemindex).getStreet();
-                currentlySelectedPlaceItemID = placeList[currentlySelectedPlaceListItemindex].getID();
+                placeTextBox.Text = placeList.ElementAt(placesListBox.SelectedIndex).getCity() + ", " 
+                    + placeList.ElementAt(placesListBox.SelectedIndex).getPostCode() + ", " 
+                    + placeList.ElementAt(placesListBox.SelectedIndex).getStreet();
+                currentlySelectedPlaceItemID = placeList[placesListBox.SelectedIndex].getID();
             }
             else
             {
@@ -104,50 +103,6 @@ namespace MYMUI
         }
 
 
-
-        private List<TrainerModel> loadAllTrainersFromDataBase()
-        {
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
-            {
-                connection.Open();
-                //testLabel.Content = "Connected to Oracle" + connection.ServerVersion + connection.DatabaseName;
-
-                OracleCommand cmd;
-
-                string sql = String.Format("select * from trainer_table");
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                OracleDataReader reader = cmd.ExecuteReader();
-                try
-                {
-                    while (reader.Read())
-                    {
-                        TrainerModel trainer = new TrainerModel();
-                        trainer.setID(reader.GetInt32(0));
-                        trainer.setFirstName(reader.GetString(1));
-                        trainer.setLastName(reader.GetString(2));
-                        trainer.setEmailAddress(reader.GetString(3));
-                        trainer.setPhoneNumber(reader.GetString(4));
-                        try
-                        {
-                            trainer.setPricePerhour(reader.GetInt32(5));
-                        }
-                        catch
-                        {
-                            trainer.setPricePerhour(0);
-                        }
-                        trainerList.Add(trainer);
-                    }
-                }
-                finally
-                {
-                    reader.Close();
-                }
-            }
-            return trainerList;
-        }
 
 
 
@@ -227,8 +182,8 @@ namespace MYMUI
                 dateTime = Convert.ToDateTime(dateAndTimeStr);
                  durationComboBox.SelectedValue.ToString().Trim();
                 MeetModel meet = new MeetModel(GlobalClass.getUserID(), GlobalClass.getTrainerID(), GlobalClass.getPlaceID(), dateTime, Int32.Parse(durationComboBox.SelectedValue.ToString().Trim())) ;
-
-                if(insertMeetingToDBReturnItsID(meet))
+                OracleSQLConnectorUserWindow oraclesql = new OracleSQLConnectorUserWindow();
+                if (oraclesql.insertMeetingToDBReturnItsID(meet))
                 {
                     addLabel.Content = "Added successfully!";
                 }else
@@ -280,33 +235,6 @@ namespace MYMUI
             return true;
         }
 
-
-        public bool insertMeetingToDBReturnItsID(MeetModel meet)
-        {
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
-            {
-                try {
-                    connection.Open();
-                    OracleCommand cmd = new OracleCommand();
-                    String sql = String.Format("INSERT INTO meet_table (date_and_time, duration, accepted, isnew, user_table_id, trainer_table_id, place_table_id) VALUES (TO_DATE('{0}', 'DD/MM/YYYY HH24:MI:SS'), {1}, {2}, {3}, {4}, {5}, {6})",
-                        meet.getDateAndHour(), meet.getDuration(), meet.getAccepted(), meet.getNew(), meet.getIDUser(), meet.getIDTrainer(), meet.getIDPlace());
-
-                    cmd = new OracleCommand(sql, connection);
-                    cmd.CommandType = CommandType.Text;
-
-                    cmd.ExecuteNonQuery();
-                }
-                catch
-                {
-                    return false;
-                }
-                finally
-                {
-                    connection.Close();
-                }
-                }
-            return true;
-        }
 
     }
 }

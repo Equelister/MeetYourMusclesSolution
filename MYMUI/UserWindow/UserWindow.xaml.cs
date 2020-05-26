@@ -23,6 +23,7 @@ namespace MYMUI
         public UserWindow()
         {
             InitializeComponent();
+            UserWindowFrame.Content = mainUserPage;
         }
 
         private void Page1_Click(object sender, RoutedEventArgs e)

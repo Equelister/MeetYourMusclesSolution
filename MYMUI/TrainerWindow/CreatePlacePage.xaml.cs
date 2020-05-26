@@ -17,6 +17,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using MYMLibrary.Models;
+using MYMLibrary.DataBaseConnections;
 
 namespace MYMUI
 {
@@ -32,7 +33,7 @@ namespace MYMUI
         OracleSQLConnector oracleSQLConnector = new OracleSQLConnector();
         List<PlaceModel> placesList = new List<PlaceModel>();
         private int currentlySelectedItemID = -1;
-        private int currentlySelectedListItemindex = -1;
+
         public CreatePlacePage()
         {
             InitializeComponent();
@@ -55,28 +56,24 @@ namespace MYMUI
             {
                 PlaceModel place = new PlaceModel(cityTextBox.Text, postcodeTextBox.Text, streetTextBox.Text, descriptionTextBox.Text);
                 {
-                    //
-                    int placeID = insertPlaceToDBReturnItsID(place);
+                    OracleSQLConnectorTrainerWindow oraclesql = new OracleSQLConnectorTrainerWindow();
+                    int placeID = oraclesql.insertPlaceToDBReturnItsID(place);
                     if (placeID < 0)
                     {
-                        label.Content = "Record not inserted";
+                        communicationLabel.Content = "Record not inserted";
                     }
                     else
                     {
                         place.setID(placeID);
                         placesList.Add(place);
                         placesListBox.Items.Add(place.getCity() + ", " + place.getDescription());
-                        label.Content = "Success! Place has been created";
+                        placesListBox.UnselectAll();
+                        currentlySelectedItemID = -1;
+                        communicationLabel.Content = "Success! Place has been created";
                     }
                 }
             }
         }
-
-
-        /// <summary>
-        /// Selects all rows from Oracle DataBase and inserts it to a List of Places
-        /// </summary>
-        /// <returns></returns>
 
 
         /// <summary>
@@ -87,20 +84,21 @@ namespace MYMUI
             if(isPlaceTextBoxesGood())
             {
                 PlaceModel place = new PlaceModel(cityTextBox.Text, postcodeTextBox.Text, streetTextBox.Text, descriptionTextBox.Text);
-                if(updatedPlaceToDataBase(place))
+                OracleSQLConnectorTrainerWindow oraclesql = new OracleSQLConnectorTrainerWindow();
+                if (oraclesql.updatedPlaceToDataBase(place, currentlySelectedItemID))
                 {
-                    placesList.ElementAt(currentlySelectedListItemindex).setCity(place.getCity());
-                    placesList.ElementAt(currentlySelectedListItemindex).setPostCode(place.getPostCode());
-                    placesList.ElementAt(currentlySelectedListItemindex).setStreet(place.getStreet());
-                    placesList.ElementAt(currentlySelectedListItemindex).setDescription(place.getDescription());
+                    placesList.ElementAt(placesListBox.SelectedIndex).setCity(place.getCity());
+                    placesList.ElementAt(placesListBox.SelectedIndex).setPostCode(place.getPostCode());
+                    placesList.ElementAt(placesListBox.SelectedIndex).setStreet(place.getStreet());
+                    placesList.ElementAt(placesListBox.SelectedIndex).setDescription(place.getDescription());
 
-                    placesListBox.Items[currentlySelectedListItemindex] = place.getCity() + ", " + place.getDescription();
+                    placesListBox.Items[placesListBox.SelectedIndex] = place.getCity() + ", " + place.getDescription();
 
-                    label.Content = "Place updated!";
+                    communicationLabel.Content = "Place updated!";
                 }
                 else
                 {
-                    label.Content = "Failed to update palce.";
+                    communicationLabel.Content = "Failed to update palce.";
                 }
             }
         }
@@ -117,7 +115,7 @@ namespace MYMUI
                 || String.IsNullOrEmpty(streetTextBox.Text.Trim())
                 || String.IsNullOrEmpty(descriptionTextBox.Text.Trim()))
             {
-                label.Content = "Fill empty fields.";
+                communicationLabel.Content = "Fill empty fields.";
                 return false;
             }
             if (cityTextBox.Text.Length >= 50
@@ -125,43 +123,14 @@ namespace MYMUI
                 || streetTextBox.Text.Length >= 50
                 || descriptionTextBox.Text.Length >= 100)
             {
-                label.Content = "Too many characters";
+                communicationLabel.Content = "Too many characters";
                 return false;
             }
             return true;
         }
 
 
-        /// <summary>
-        /// Sends object to Oracle DataBase for an update.
-        /// </summary>
-        /// <param name="place"></param>
-        /// <returns></returns>
-        public bool updatedPlaceToDataBase(PlaceModel place)
-        {
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
-            {
-                connection.Open();
-                testLabel.Content = "Connected to Oracle" + connection.ServerVersion + connection.DatabaseName;
 
-                OracleCommand cmd;
-
-                string sql = String.Format("UPDATE place_table SET city = '{0}', postcode = '{1}', street = '{2}', description = '{3}' WHERE id = {4}", place.getCity(), place.getPostCode(), place.getStreet(), place.getDescription(), currentlySelectedItemID);
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                int rowsUpdated = cmd.ExecuteNonQuery();
-                if (rowsUpdated == 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-        }
 
 
         /// <summary>
@@ -184,51 +153,19 @@ namespace MYMUI
         /// <param name="e"></param>
         private void placesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(placesListBox.Items.IndexOf(placesListBox.SelectedItem) >= 0)
+            if (placesListBox.SelectedIndex >= 0)
             {
-                currentlySelectedListItemindex = placesListBox.Items.IndexOf(placesListBox.SelectedItem);
+                //currentlySelectedListItemindex = placesListBox.Items.IndexOf(placesListBox.SelectedItem);
+
+                currentlySelectedItemID = placesList[placesListBox.SelectedIndex].getID();
+                cityTextBox.Text = placesList[placesListBox.SelectedIndex].getCity();
+                postcodeTextBox.Text = placesList[placesListBox.SelectedIndex].getPostCode();
+                streetTextBox.Text = placesList[placesListBox.SelectedIndex].getStreet();
+                descriptionTextBox.Text = placesList[placesListBox.SelectedIndex].getDescription();
             }
-            currentlySelectedItemID = placesList[currentlySelectedListItemindex].getID();
-            cityTextBox.Text = placesList[currentlySelectedListItemindex].getCity();
-            postcodeTextBox.Text = placesList[currentlySelectedListItemindex].getPostCode();
-            streetTextBox.Text = placesList[currentlySelectedListItemindex].getStreet();
-            descriptionTextBox.Text = placesList[currentlySelectedListItemindex].getDescription();
         }
 
 
-        /// <summary>
-        /// Inserts object into Oracle DataBase
-        /// </summary>
-        /// <param name="place"></param>
-        /// <returns></returns>
-        public int insertPlaceToDBReturnItsID(PlaceModel place)
-        {
-            int output = -1;
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
-            {
-                // Open a database connection
-                connection.Open();
-                OracleCommand cmd = new OracleCommand();
-                           // INSERT statement with RETURNING clause to get the generated ID 
-                cmd.CommandText = String.Format(
-                "INSERT INTO place_table(city, postcode, street, description, trainer_table_id) VALUES('{0}', '{1}', '{2}', '{3}', {4}) RETURNING id INTO :id",
-                place.getCity(), place.getPostCode(), place.getStreet(), place.getDescription(), GlobalClass.getTrainerID());
-                cmd.Connection = connection;
-            
-                cmd.Parameters.Add(new OracleParameter
-                {
-                    ParameterName = ":id",
-                    OracleDbType = OracleDbType.Int32,
-                    Direction = ParameterDirection.Output
-                });
-
-                            // Execute INSERT statement
-                cmd.ExecuteNonQuery();
-                String outputStr = cmd.Parameters[":id"].Value.ToString();
-                output = Convert.ToInt32(outputStr);
-            }
-            return output;
-        }
 
 
         /// <summary>
@@ -243,7 +180,7 @@ namespace MYMUI
                 updatePlace();
             }else
             {
-                label.Content = "First select an item.";
+                communicationLabel.Content = "First select an item.";
             }
         }
     }

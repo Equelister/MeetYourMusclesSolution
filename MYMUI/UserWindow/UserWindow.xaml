@@ -20,11 +20,6 @@
                 
                 Margin="20" Click="Page1_Click"/>
 
-        <Button x:Name="Page2" Content="Page 2" MinWidth="100" MinHeight="40"
-                Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                
-                Margin="20"/>
-
 
 
 

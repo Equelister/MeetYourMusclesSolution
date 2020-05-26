@@ -47,36 +47,18 @@ namespace MYMUI
 
         private void loadData()
         {
-            loadAllMeetingsFromDataBase();
+            OracleSQLConnector oraclesql = new OracleSQLConnector();
+            pendingMeetingsList = oraclesql.loadAllMeetingsFromDataBase(GlobalClass.getTrainerID(), "trainer");
             separeteMeetingLists();
-            sortListsByDateASC(acceptedMeetingsList);
-            sortListsByDateASC(pendingMeetingsList);
-            sortListsByDateASC(declinedMeetingsList);
+            Sorts sort = new Sorts();
+            sort.sortListsByDateASC(acceptedMeetingsList);
+            sort.sortListsByDateASC(pendingMeetingsList);
+            sort.sortListsByDateASC(declinedMeetingsList);
             acceptedMeetingsListBox.ItemsSource = acceptedMeetingsList;
             pendingMeetingsListBox.ItemsSource = pendingMeetingsList;
             declinedMeetingsListBox.ItemsSource = declinedMeetingsList;
         }
 
-        /// <summary>
-        /// Sorts list Ascending by date
-        /// </summary>
-        /// <param name="list"></param>
-        private void sortListsByDateASC(List<MeetModel> list)
-        {
-            MeetModel temp;
-            for (int i = 0; i < list.Count; i++)
-            {
-                for(int j = 0; j < list.Count; j++)
-                {
-                    if(list[i].getDateAndHour() < list[j].getDateAndHour())
-                    {
-                        temp = list[i];
-                        list[i] = list[j];
-                        list[j] = temp;
-                    }
-                }
-            }
-        }
 
         /// <summary>
         /// Loads all meetings from DB for trainer with date greater than current date
@@ -177,47 +159,6 @@ namespace MYMUI
             userPhoneNumberTextBox.Text = user.getPhoneNumberStr();
             placeTextBox.Text = place.getFullDetails();
             dateAndHourTextBox.Text = meeting.getDateAndHourStr();
-        }
-
-
-
-        private void loadAllMeetingsFromDataBase()
-        {
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
-            {
-                connection.Open();
-                //testLabel.Content = "Connected to Oracle" + connection.ServerVersion + connection.DatabaseName;
-
-                OracleCommand cmd;
-
-                string sql = String.Format("select * from meet_table WHERE trainer_table_id = {0}", GlobalClass.getTrainerID());
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                OracleDataReader reader = cmd.ExecuteReader();
-                try
-                {
-                    while (reader.Read())
-                    {
-                        MeetModel meeting = new MeetModel(
-                            reader.GetInt32(0),
-                            reader.GetInt32(5),
-                            reader.GetInt32(6),
-                            reader.GetInt32(7),
-                            reader.GetDateTime(1),
-                            reader.GetInt32(2),
-                            reader.GetInt32(3),
-                            reader.GetInt32(4));
-                        if (meeting.getDateAndHour() > DateTime.Now)
-                            pendingMeetingsList.Add(meeting);
-                    }
-                }
-                finally
-                {
-                    reader.Close();
-                }
-            }
         }
     }
 }

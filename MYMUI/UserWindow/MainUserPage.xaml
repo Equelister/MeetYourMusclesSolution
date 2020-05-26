@@ -45,15 +45,29 @@
         
         <TextBlock x:Name="acceptedMeetingsTextBlock" Grid.Row="1" Grid.Column="5" VerticalAlignment="Bottom" 
                    Text="Accepted Meetings:"/>
-        <ListBox x:Name="acceptedMeetingsListBox" Grid.Row="2" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4" SelectionChanged="acceptedMeetingsListBox_SelectionChanged" 
-                 SelectedItem="Mode=OneWayToSource">
+        <ListBox x:Name="acceptedMeetingsListBox" Grid.Row="2" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4" 
+                 ItemsSource="{Binding}" SelectionChanged="acceptedMeetingsListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <TextBlock Text="{Binding DateAndHour}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
 
         <TextBlock x:Name="pendingMeetingsTextBlock" Grid.Row="4" Grid.Column="5" VerticalAlignment="Bottom" 
                    Text="Pending Meetings:"/>
-        <ListBox x:Name="pendingMeetingsListBox" Grid.Row="5" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4" SelectionChanged="pendingMeetingsListBox_SelectionChanged" 
-                 >
+        <ListBox x:Name="pendingMeetingsListBox" Grid.Row="5" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4" 
+                 ItemsSource="{Binding}" SelectionChanged="pendingMeetingsListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <TextBlock Text="{Binding DateAndHour}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
 
         <Button x:Name="refreshButton" Grid.Row="8" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Top"

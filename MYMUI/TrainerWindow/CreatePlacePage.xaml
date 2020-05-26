@@ -40,8 +40,7 @@
 
 
         </ListBox>
-        <Label x:Name="testLabel" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="20,15,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="8" Width="860"/>
-        <Label x:Name="label" Content="Label" Grid.Column="1" HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlignment="Top" Grid.ColumnSpan="8" Width="814" Height="71" Grid.RowSpan="2"/>
+        <Label x:Name="communicationLabel" Grid.Column="1" HorizontalAlignment="Left" Margin="20,15,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="8" Width="860" Visibility="Visible"/>
 
 
 

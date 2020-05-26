@@ -92,11 +92,6 @@
         </ListBox>
 
 
-        <Button x:Name="sendToDBButton" Grid.Row="10" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Top"
-                MinHeight="20" MinWidth="60" MaxHeight="30" MaxWidth="80"
-                Content="Update"/>
-
-
 
 
 
