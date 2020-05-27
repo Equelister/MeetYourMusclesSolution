@@ -18,7 +18,7 @@ namespace MYMLibrary
                     connection.Open();
                     OracleCommand cmd = new OracleCommand();
                     String sql = String.Format("INSERT INTO meet_table (date_and_time, duration, accepted, isnew, user_table_id, trainer_table_id, place_table_id) VALUES (TO_DATE('{0}', 'DD/MM/YYYY HH24:MI:SS'), {1}, {2}, {3}, {4}, {5}, {6})",
-                        meet.getDateAndHour(), meet.getDuration(), meet.getAccepted(), meet.getNew(), meet.getIDUser(), meet.getIDTrainer(), meet.getIDPlace());
+                        meet.DateAndHour, meet.Duration, meet.Accepted, meet.New, meet.IDUser, meet.IDTrainer, meet.IDPlace);
 
                     cmd = new OracleCommand(sql, connection);
                     cmd.CommandType = CommandType.Text;
@@ -45,10 +45,7 @@ namespace MYMLibrary
             using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
             {
                 connection.Open();
-                //testLabel.Content = "Connected to Oracle" + connection.ServerVersion + connection.DatabaseName;
-
                 OracleCommand cmd;
-
                 string sql = String.Format("select * from trainer_table");
 
                 cmd = new OracleCommand(sql, connection);

@@ -33,7 +33,6 @@ namespace MYMUI
             InitializeComponent();
             loadUserData();
             loadData();
-
         }
 
         private void loadUserData()
@@ -70,13 +69,13 @@ namespace MYMUI
             int size = pendingMeetingsList.Count;
             for (int i = 0; i < size; i++)
             {
-                if (pendingMeetingsList.ElementAt(i).getAccepted() == 1)
+                if (pendingMeetingsList.ElementAt(i).Accepted == 1)
                 {
                     acceptedMeetingsList.Add(pendingMeetingsList[i]);
                     pendingMeetingsList.RemoveAt(i);
                     i--;
                     size--;
-                }else if (pendingMeetingsList.ElementAt(i).getAccepted() == 0 && pendingMeetingsList.ElementAt(i).getNew() == 0)
+                }else if (pendingMeetingsList.ElementAt(i).Accepted == 0 && pendingMeetingsList.ElementAt(i).New == 0)
                 {
                     declinedMeetingsList.Add(pendingMeetingsList[i]);
                     pendingMeetingsList.RemoveAt(i);
@@ -149,11 +148,11 @@ namespace MYMUI
         {
             OracleSQLConnector oracleSQLConnector = new OracleSQLConnector();
             int globalUserID = GlobalClass.getUserID();
-            GlobalClass.setUserID(meeting.getIDUser());
+            GlobalClass.setUserID(meeting.IDUser);
             UserModel user = oracleSQLConnector.loadUserFromDataBase();
             GlobalClass.setUserID(globalUserID);
 
-            PlaceModel place = oracleSQLConnector.loadPlaceFromDataBase(meeting.getIDPlace());
+            PlaceModel place = oracleSQLConnector.loadPlaceFromDataBase(meeting.IDPlace);
 
             userTextBox.Text = user.getFullName();
             userPhoneNumberTextBox.Text = user.getPhoneNumberStr();

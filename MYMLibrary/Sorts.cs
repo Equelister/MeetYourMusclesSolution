@@ -18,7 +18,7 @@ namespace MYMLibrary
             {
                 for (int j = 0; j < list.Count; j++)
                 {
-                    if (list[i].getDateAndHour() < list[j].getDateAndHour())
+                    if (list[i].DateAndHour < list[j].DateAndHour)
                     {
                         temp = list[i];
                         list[i] = list[j];

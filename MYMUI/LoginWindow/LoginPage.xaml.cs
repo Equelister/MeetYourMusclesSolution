@@ -59,61 +59,6 @@ namespace MYMUI
                     errorLabel.Content = "Invalid Data!";
                 }
             }
-
-
-
-
-            /*
-
-            //valudate with sql
-            //login to user/trainer window
-            bool emailFound = false;
-            int personID = oracleSQLConnectorLoginWindow.getIDFromDataBase("user_password_table", emailTextBox.Text.Trim());
-            if(personID>0)
-            {
-                emailFound = true;
-                if(passwordPasswordBox.Password.Equals(OracleSQLConnectorLoginWindow.getColumnFromDataBaseForID("password", "user_password_table", personID)))
-                {
-                    GlobalClass.setUserID(oracleSQLConnectorLoginWindow.getIDFromDataBase("user_table", emailTextBox.Text.Trim()));
-                    App.Current.MainWindow.Hide();
-                    UserWindow userWindow = new UserWindow();
-                    userWindow.Show();
-                    App.Current.MainWindow.Close();
-                }else
-                {
-                    errorLabel.Content = "Wrong Password!";
-                    //label incorrect password
-                }
-            }
-            if (!emailFound)
-            {
-                personID = oracleSQLConnectorLoginWindow.getIDFromDataBase("trainer_password_table", emailTextBox.Text.Trim());
-                if (personID > 0)
-                {
-                    emailFound = true;
-                    if (passwordPasswordBox.Password.Equals(OracleSQLConnectorLoginWindow.getColumnFromDataBaseForID("password", "trainer_password_table", personID)))
-                    {
-                        GlobalClass.setTrainerID(oracleSQLConnectorLoginWindow.getIDFromDataBase("trainer_table", emailTextBox.Text.Trim()));
-                        App.Current.MainWindow.Hide();
-                        TrainerWindow trainerWindow = new TrainerWindow();
-                        trainerWindow.Show();
-                        App.Current.MainWindow.Close();
-                    }
-                    else
-                    {
-                        errorLabel.Content = "Wrong Password!";
-                        // label incorrect password
-                    }
-                }
-            }
-            if(!emailFound)
-            {
-                errorLabel.Content = "Wrong Email!";
-                // label incorrect email
-            }
-
-    */
-
         }
     }
 }

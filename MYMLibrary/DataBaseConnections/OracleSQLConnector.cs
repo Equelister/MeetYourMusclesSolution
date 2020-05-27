@@ -25,9 +25,7 @@ namespace MYMLibrary
             using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
             {
                 connection.Open();
-
                 OracleCommand cmd;
-
                 string sql = String.Format("select * from place_table WHERE trainer_table_id = {0}", GlobalClass.getTrainerID());
 
                 cmd = new OracleCommand(sql, connection);
@@ -65,9 +63,7 @@ namespace MYMLibrary
             using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
             {
                 connection.Open();
-
                 OracleCommand cmd;
-
                 string sql = String.Format("select * from user_table WHERE id = {0}", GlobalClass.getUserID());
 
                 cmd = new OracleCommand(sql, connection);
@@ -95,10 +91,7 @@ namespace MYMLibrary
             using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
             {
                 connection.Open();
-                //testLabel.Content = "Connected to Oracle" + connection.ServerVersion + connection.DatabaseName;
-
                 OracleCommand cmd;
-
                 string sql = String.Format("select * from place_table WHERE id = {0}", placeID);
 
                 cmd = new OracleCommand(sql, connection);
@@ -134,9 +127,7 @@ namespace MYMLibrary
             using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
             {
                 connection.Open();
-
                 OracleCommand cmd;
-
                 string sql = String.Format("select * from trainer_table WHERE id = {0}", GlobalClass.getTrainerID());
 
                 cmd = new OracleCommand(sql, connection);
@@ -171,9 +162,7 @@ namespace MYMLibrary
             using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
             {
                 connection.Open();
-
                 OracleCommand cmd;
-
                 string sql = String.Format("select * from trainer_table WHERE id = {0}", trainerID);
 
                 cmd = new OracleCommand(sql, connection);
@@ -210,10 +199,7 @@ namespace MYMLibrary
             using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
             {
                 connection.Open();
-                //testLabel.Content = "Connected to Oracle" + connection.ServerVersion + connection.DatabaseName;
-
                 OracleCommand cmd;
-
                 string sql = String.Format("select * from meet_table WHERE {1}_table_id = {0}", ID, tableName);
 
                 cmd = new OracleCommand(sql, connection);
@@ -233,7 +219,7 @@ namespace MYMLibrary
                             reader.GetInt32(2),
                             reader.GetInt32(3),
                             reader.GetInt32(4));
-                        if (meeting.getDateAndHour() > DateTime.Now)
+                        if (meeting.DateAndHour > DateTime.Now)
                             meetingList.Add(meeting);
                     }
                 }

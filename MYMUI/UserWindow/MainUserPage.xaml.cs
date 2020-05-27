@@ -77,11 +77,11 @@ namespace MYMUI
         {
             OracleSQLConnector oracleSQLConnector = new OracleSQLConnector();
             int globalUserID = GlobalClass.getTrainerID();
-            GlobalClass.setUserID(meeting.getIDTrainer());
-            TrainerModel trainer = oracleSQLConnector.loadTrainerFromDataBase(meeting.getIDTrainer());
+            GlobalClass.setUserID(meeting.IDTrainer);
+            TrainerModel trainer = oracleSQLConnector.loadTrainerFromDataBase(meeting.IDTrainer);
             GlobalClass.setTrainerID(globalUserID);
 
-            PlaceModel place = oracleSQLConnector.loadPlaceFromDataBase(meeting.getIDPlace());
+            PlaceModel place = oracleSQLConnector.loadPlaceFromDataBase(meeting.IDPlace);
 
             trainerTextBox.Text = trainer.getFullName();
             trainerPhoneNumberTextBox.Text = trainer.getPhoneNumberStr();
@@ -95,7 +95,7 @@ namespace MYMUI
             int size = acceptedMeetingsList.Count;
             for (int i=0; i< size; i++)
             {
-                if (acceptedMeetingsList.ElementAt(i).getAccepted() == 0)
+                if (acceptedMeetingsList.ElementAt(i).Accepted == 0)
                 {
                     pendingMeetingsList.Add(acceptedMeetingsList[i]);
                     acceptedMeetingsList.RemoveAt(i);
@@ -111,8 +111,8 @@ namespace MYMUI
         {
             acceptedMeetingsList.Clear();
             pendingMeetingsList.Clear();
-            acceptedMeetingsListBox.Items.Clear();
-            pendingMeetingsListBox.Items.Clear();
+            //acceptedMeetingsListBox.Items.Clear();
+            //pendingMeetingsListBox.Items.Clear();
             loadData();
         }
     }

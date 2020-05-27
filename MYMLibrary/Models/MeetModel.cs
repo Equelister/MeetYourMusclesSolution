@@ -43,50 +43,10 @@ namespace MYMLibrary
         }
 
 
-        public int getID()
-        {
-            return this.ID;
-        }
-        public int getIDUser()
-        {
-            return this.IDUser;
-        }
-
-        public int getIDTrainer()
-        {
-            return this.IDTrainer;
-        }
-
-        public int getIDPlace()
-        {
-            return this.IDPlace;
-        }
-
-        public DateTime getDateAndHour()
-        {
-            return this.DateAndHour;
-        }
         public String getDateAndHourStr()
         {
             return this.DateAndHour.ToString();
         }
-
-        public int getDuration()
-        {
-            return this.Duration;
-        }
-
-        public int getAccepted()
-        {
-            return this.Accepted;
-        }
-
-        public int getNew()
-        {
-            return this.New;
-        }
-
-           
 
     }
 }

@@ -6,11 +6,11 @@ namespace MYMLibrary
 {
     public class PersonModel
     {
-        protected int ID { get; set; }
-        protected String FirstName { get; set; }
-        protected String LastName { get; set; }
-        protected String EmailAddress { get; set; }
-        protected String PhoneNumber { get; set; }
+        protected int ID;
+        protected String FirstName;
+        protected String LastName;
+        protected String EmailAddress;
+        protected String PhoneNumber;
         protected String Password;
 
 

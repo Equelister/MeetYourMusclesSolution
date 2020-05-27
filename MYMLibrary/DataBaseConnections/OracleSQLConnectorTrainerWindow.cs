@@ -19,7 +19,7 @@ namespace MYMLibrary.DataBaseConnections
                 {
                     connection.Open();
                     OracleCommand cmd;
-                    string sql = String.Format("update meet_table set accepted = {1}, isnew = {2} where id = {0}", meeting.getID(), meeting.getAccepted(), meeting.getNew());
+                    string sql = String.Format("update meet_table set accepted = {1}, isnew = {2} where id = {0}", meeting.ID, meeting.Accepted, meeting.New);
                     cmd = new OracleCommand(sql, connection);
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();
