@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace MYMUI
 {
@@ -19,9 +20,11 @@ namespace MYMUI
     {
         CreatePlacePage CreatePlacePage = new CreatePlacePage();
         MainTrainerPage mainTrainerPage = new MainTrainerPage();
+        bool maximized = false;
         public TrainerWindow()
         {
             InitializeComponent();
+            setUpClock();
             TrainerWindowFrame.Content = mainTrainerPage;
         }
 
@@ -33,6 +36,47 @@ namespace MYMUI
         private void Page1_Click(object sender, RoutedEventArgs e)
         {
             TrainerWindowFrame.Content = CreatePlacePage;
+        }
+        private void setUpClock()
+        {
+            DispatcherTimer clock = new DispatcherTimer();
+            clock.Interval = TimeSpan.FromMilliseconds(100);
+            clock.Tick += timerTickEvent;
+            clock.Start();
+        }
+
+        void timerTickEvent(object sender, EventArgs e)
+        {
+            clockTextBlock.Text = DateTime.Now.ToString(@"HH\:mm\:ss");
+        }
+
+        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            TrainerWindowFrame.Content = mainTrainerPage;
+        }
+
+        private void ListViewItem_Selected_1(object sender, RoutedEventArgs e)
+        {
+            TrainerWindowFrame.Content = CreatePlacePage;
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            SystemCommands.CloseWindow(this);
+        }
+
+        private void toTrayButton_Click(object sender, RoutedEventArgs e)
+        {
+            SystemCommands.MinimizeWindow(this);
+        }
+
+        private void maxminButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!maximized)
+                SystemCommands.MaximizeWindow(this);
+            else
+                SystemCommands.RestoreWindow(this);
+            maximized = !maximized;
         }
     }
 }

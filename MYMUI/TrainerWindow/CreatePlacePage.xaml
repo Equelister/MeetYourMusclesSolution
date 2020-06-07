@@ -6,7 +6,11 @@
       xmlns:local="clr-namespace:MYMUI"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1100"
-      Title="CreatePlacePage">
+      Title="CreatePlacePage"
+      Foreground="#b3bcfc"
+      FontSize="14"
+      FontFamily="Georgia"
+      >
 
 
     <Grid>
@@ -15,30 +19,37 @@
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="4">
 
             <TextBlock Text="City:" Margin="0,5,0,5"/>
-            <TextBox x:Name="cityTextBox"/>
+            <TextBox x:Name="cityTextBox" Style="{StaticResource CustomTextBox}"
+                    />
 
             <TextBlock Text="Postcode" Margin="0,5,0,5"/>
-            <TextBox x:Name="postcodeTextBox"/>
+            <TextBox x:Name="postcodeTextBox" Style="{StaticResource CustomTextBox}"
+                     />
 
             <TextBlock Text="Street" Margin="0,5,0,5"/>
-            <TextBox x:Name="streetTextBox"/>
+            <TextBox x:Name="streetTextBox" Style="{StaticResource CustomTextBox}"
+                    />
 
             <TextBlock Text="Description" Margin="0,5,0,5"/>
-            <TextBox x:Name="descriptionTextBox"/>
+            <TextBox x:Name="descriptionTextBox" Style="{StaticResource CustomTextBox}"
+                     />
 
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,20">
-                <Button x:Name="addPlaceButton" Content="Add" Margin="0,0,40,0" MinWidth="70"
-                 Click="addPlaceButton_Click"/>
+                <Button x:Name="addPlaceButton" Style="{StaticResource CustomButtonStyle}" 
+                        Content="Add" Margin="0,0,40,0" MinWidth="70"
+                        Click="addPlaceButton_Click"/>
 
-                <Button x:Name="updatePlaceButton" Content="Update" MinWidth="70" Click="updatePlaceButton_Click"/>
+                <Button x:Name="updatePlaceButton" Style="{StaticResource CustomButtonStyle}"
+                        Content="Update" MinWidth="70"
+                        Click="updatePlaceButton_Click"/>
             </StackPanel>
         </StackPanel>
 
 
-        <ListBox x:Name="placesListBox" Grid.Row="2" Grid.RowSpan="3" Grid.Column="6" Grid.ColumnSpan="3" SelectionChanged="placesListBox_SelectionChanged">
-
-
+        <ListBox x:Name="placesListBox" Grid.Row="2" Grid.RowSpan="3" Grid.Column="6" Grid.ColumnSpan="3"
+                 FontSize="12" Background="#c0c6eb"
+                 SelectionChanged="placesListBox_SelectionChanged">
         </ListBox>
         <Label x:Name="communicationLabel" Grid.Column="1" HorizontalAlignment="Left" Margin="20,15,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="8" Width="860" Visibility="Visible"/>
 

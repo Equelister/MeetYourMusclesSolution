@@ -41,5 +41,10 @@ namespace MYMUI
         {
             LoginWindowFrame.Content = registerPage; 
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            SystemCommands.CloseWindow(this);
+        }
     }
 }

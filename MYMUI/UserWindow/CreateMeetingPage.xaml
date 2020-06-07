@@ -6,7 +6,11 @@
       xmlns:local="clr-namespace:MYMUI"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1100"
-      Title="CreateMeetingPage">
+      Title="CreateMeetingPage"
+      Foreground="#b3bcfc"
+      FontSize="14"
+      FontFamily="Georgia"
+      >
 
     <Grid>
 
@@ -14,16 +18,25 @@
 
 
 
-        <StackPanel Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="4" Grid.RowSpan="4">
+        <StackPanel Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="5" Grid.RowSpan="4">
 
             <TextBlock Text="Trainer:" Margin="0,5,0,5"/>
-            <TextBox x:Name="trainerTextBox" IsReadOnly="True"/>
+            <TextBox x:Name="trainerTextBox" Style="{StaticResource CustomTextBox}"
+                     IsReadOnly="True"/>
 
             <TextBlock Text="Place:" Margin="0,5,0,5"/>
-            <TextBox x:Name="placeTextBox" IsReadOnly="True"/>
+            <TextBox x:Name="placeTextBox" Style="{StaticResource CustomTextBox}"
+                     IsReadOnly="True"/>
 
             <TextBlock Text="Duration:" Margin="0,5,0,5"/>
             <ComboBox x:Name="durationComboBox" SelectedValuePath="Content">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Background" Value="#c0c6eb"/>
+                        <Setter Property="BorderBrush" Value="#c0c6eb"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+
                 <ComboBoxItem Content="30"/>
                 <ComboBoxItem Content="60"/>
                 <ComboBoxItem Content="90"/>
@@ -35,21 +48,40 @@
 
             <TextBlock Text="Hour and minutes" Margin="0,5,0,5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-                <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="hourPicker" Margin="5,5,0,5" Width="20" Height="20" Text="12" TextChanged="hourPicker_TextChanged"/>
-                <Button x:Name="hourUp" Margin="5,5,0,5" Content="˄" Width="20" Height="20" Click="hourUp_Click"/>
-                <Button x:Name="hourDown" Margin="0,5,0,5"  Content="˅" Width="20" Height="20" Click="hourDown_Click"/>
-            </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="hourPicker" Margin="5,5,0,5" Width="20" Height="20" Text="12" 
+                             FontSize="12" Background="#c0c6eb"
+                             TextChanged="hourPicker_TextChanged"/>
+                    <Button x:Name="hourUp" Style="{StaticResource CustomButtonStyle}"
+                            Content="˄" 
+                            Margin="0,5,0,5" Width="20" Height="20" 
+                            Click="hourUp_Click"/>
+                    <Button x:Name="hourDown" Style="{StaticResource CustomButtonStyle}"
+                            Content="˅"
+                            Margin="0,5,0,5" Width="20" Height="20" 
+                            Click="hourDown_Click"/>
+                </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="minutePicker" Margin="5,5,0,5" Width="20" Height="20" Text="12" TextChanged="minutePicker_TextChanged"/>
-                <Button x:Name="minuteUp" Margin="5,5,0,5" Content="˄" Width="20" Height="20" Click="minuteUp_Click"/>
-                <Button x:Name="minuteDown" Margin="0,5,0,5"  Content="˅" Width="20" Height="20" Click="minuteDown_Click"/>
-            </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="minutePicker" Margin="5,5,0,5" Width="20" Height="20" Text="12"
+                        FontSize="12" Background="#c0c6eb"
+                        TextChanged="minutePicker_TextChanged"/>
+                    <Button x:Name="minuteUp" Style="{StaticResource CustomButtonStyle}"
+                            Content="˄"
+                            Margin="5,5,0,5" Width="20" Height="20" 
+                        Click="minuteUp_Click"/>
+                    <Button x:Name="minuteDown" Style="{StaticResource CustomButtonStyle}"
+                            Content="˅"
+                            Margin="0,5,0,5" Width="20" Height="20"
+                        Click="minuteDown_Click"/>
+                </StackPanel>
             </StackPanel>
             
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,5">
-                <Button x:Name="addMeetingButton" Content="Add" Margin="0,0,0,0" MinWidth="70" Click="addMeetingButton_Click"/>
+                <Button x:Name="addMeetingButton" Style="{StaticResource CustomButtonStyle}"
+                        Content="Add"
+                        Margin="0,0,0,0" MinWidth="70" 
+                        Click="addMeetingButton_Click"/>
                 <Label x:Name="addLabel"/>
             </StackPanel>
 
@@ -59,10 +91,12 @@
         </StackPanel>
 
 
-        <ListBox x:Name="trainersListBox" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" 
+        <ListBox x:Name="trainersListBox" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="4"
+                 FontSize="12" Background="#c0c6eb"
                  SelectionChanged="trainersListBox_SelectionChanged">
         </ListBox>
-        <ListBox x:Name="placesListBox" Grid.Row="1" Grid.RowSpan="3" Grid.Column="6" Grid.ColumnSpan="3" 
+        <ListBox x:Name="placesListBox" Grid.Row="1" Grid.RowSpan="3" Grid.Column="6" Grid.ColumnSpan="4" 
+                 FontSize="12" Background="#c0c6eb"
                  SelectionChanged="placesListBox_SelectionChanged">
         </ListBox>
 
@@ -78,6 +112,7 @@
 
 
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

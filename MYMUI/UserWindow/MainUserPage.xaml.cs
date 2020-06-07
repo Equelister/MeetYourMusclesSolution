@@ -42,6 +42,18 @@ namespace MYMUI
             userNameTextBlock.Text = user.getFullName();
             userEmailTextBlock.Text = user.getEmailAddress();
             userPhoneNumberTextBlock.Text = user.getPhoneNumberStr();
+
+            if (!String.IsNullOrWhiteSpace(user.getImageUrl()))
+            {
+                String userImageUrl = user.getImageUrl();
+                BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.UriSource = new Uri(user.getImageUrl(), UriKind.RelativeOrAbsolute);
+                bi.EndInit();
+                userImage.Source = bi;
+            }
+
+            
         }
 
         private void loadData()
@@ -76,10 +88,10 @@ namespace MYMUI
         private void setTextBoxesWithData(MeetModel meeting)
         {
             OracleSQLConnector oracleSQLConnector = new OracleSQLConnector();
-            int globalUserID = GlobalClass.getTrainerID();
-            GlobalClass.setUserID(meeting.IDTrainer);
+            int globalTrainerID = GlobalClass.getTrainerID();
+            GlobalClass.setTrainerID(meeting.IDTrainer);
             TrainerModel trainer = oracleSQLConnector.loadTrainerFromDataBase(meeting.IDTrainer);
-            GlobalClass.setTrainerID(globalUserID);
+            GlobalClass.setTrainerID(globalTrainerID);
 
             PlaceModel place = oracleSQLConnector.loadPlaceFromDataBase(meeting.IDPlace);
 

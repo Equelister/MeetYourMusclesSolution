@@ -6,64 +6,90 @@
         xmlns:local="clr-namespace:MYMUI"
         mc:Ignorable="d"
         Title="TrainerWindow" Height="720" Width="1280"
-        WindowStartupLocation="CenterScreen">
-    <Grid>
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent" Foreground="#b3bcfc"
+        FontWeight="DemiBold" FontFamily="Georgia"
+        WindowStyle="None" ResizeMode="CanResizeWithGrip"
+        AllowsTransparency="True"
+        >
 
-        <Button x:Name="Page0" Content="Page 0" MinWidth="100" MinHeight="40" Width="Auto" Height="Auto"
-                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                
-                Margin="20" Click="Page0_Click"/>
+    <Border CornerRadius="20" BorderThickness="3" BorderBrush="#000" Background="{StaticResource GreyGridGradientBrush}">
+        <Grid>
+            <StackPanel Grid.Column="12" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,10,0"
+                    Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="toTrayButton" Style="{StaticResource CustomButtonStyle}" Content="__" 
+                    Width="40" Height="20" Click="toTrayButton_Click"/>
+                <Button x:Name="maxminButton" Style="{StaticResource CustomButtonStyle}" Content="[ ]" 
+                    Width="40" Height="20" Click="maxminButton_Click"/>
+                <Button x:Name="closeButton" Style="{StaticResource CustomCloseButtonStyle}" Click="closeButton_Click"/>
+            </StackPanel>
 
-        <Button x:Name="Page1" Content="Page 1" MinWidth="100" MinHeight="40"
-                Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                
-                Margin="20" Click="Page1_Click"/>
-
-
-
-
-
-        <Frame x:Name="TrainerWindowFrame" NavigationUIVisibility="Hidden" 
-               Grid.Column="2" Grid.ColumnSpan="12" 
-               Grid.Row="0" Grid.RowSpan="16" />
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+            <TextBlock x:Name="clockTextBlock" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                Text="Clock" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32"/>
 
 
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+            <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="17" BorderThickness="0"
+                Background="Transparent" Foreground="#b3bcfc">
+                <ListViewItem Selected="ListViewItem_Selected"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                          HorizontalContentAlignment="Center"
+                          Height="60"
+                          FontSize="20" Content="Main Page">
+                </ListViewItem>
+                <ListViewItem Selected="ListViewItem_Selected_1"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                          HorizontalContentAlignment="Center"
+                          Height="60"
+                          FontSize="20" Content="Create Place">
+                </ListViewItem>
+            </ListView>
+
+
+
+            <Border BorderBrush="#000" BorderThickness="2" CornerRadius="4" Background="{StaticResource BlueGridGradientBrush}"
+                Grid.Column="2" Grid.ColumnSpan="12" 
+                Grid.Row="1" Grid.RowSpan="16">
+                <Frame x:Name="TrainerWindowFrame" NavigationUIVisibility="Hidden"/>
+            </Border>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
 
 
@@ -76,5 +102,7 @@
 
 
 
-    </Grid>
+        </Grid>
+    </Border>
+
 </Window>

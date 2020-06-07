@@ -6,13 +6,21 @@
       xmlns:local="clr-namespace:MYMUI"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1100"
-      Title="MainTrainerPage">
+      Title="MainTrainerPage"
+      Foreground="#b3bcfc"
+      FontSize="14"
+      FontFamily="Georgia"
+      >
 
     <Grid>
 
 
         <StackPanel Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Top">
-            <Button Content="FUTURE CONTENT Avatar" MinHeight="150" MinWidth="150" MaxHeight="250" MaxWidth="250" HorizontalAlignment="Left"/>
+            <Image x:Name="userImage" Height="150" Width="150" HorizontalAlignment="Left" Margin="0,0,0,20">
+                <Image.Source>
+                    <BitmapImage UriSource="/Images/UserImageBasic.png" />
+                </Image.Source>
+            </Image>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Welcome: "/>
                 <TextBlock x:Name="trainerNameTextBlock"/>
@@ -27,35 +35,50 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Grid.Row="6" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom">
+        <StackPanel Grid.Row="5" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center">
             <TextBlock Text="Client:" Margin="0,5,0,5"/>
-            <TextBox x:Name="userTextBox" IsReadOnly="True"/>
+            <TextBox x:Name="userTextBox" Style="{StaticResource CustomTextBox}"
+                     IsReadOnly="True"/>
 
             <TextBlock Text="Client Phone Number:" Margin="0,5,0,5"/>
-            <TextBox x:Name="userPhoneNumberTextBox" IsReadOnly="True"/>
+            <TextBox x:Name="userPhoneNumberTextBox" Style="{StaticResource CustomTextBox}"
+                     IsReadOnly="True"/>
 
             <TextBlock Text="Place:" Margin="0,5,0,5"/>
-            <TextBox x:Name="placeTextBox" IsReadOnly="True"/>
+            <TextBox x:Name="placeTextBox" Style="{StaticResource CustomTextBox}"
+                     IsReadOnly="True"/>
 
             <TextBlock Text="Date and Hour:" Margin="0,5,0,5"/>
-            <TextBox x:Name="dateAndHourTextBox" IsReadOnly="True"/>
+            <TextBox x:Name="dateAndHourTextBox" Style="{StaticResource CustomTextBox}"
+                     IsReadOnly="True"/>
         </StackPanel>
 
 
         <TextBlock x:Name="acceptedMeetingsTextBlock" Grid.Row="0" Grid.Column="5" VerticalAlignment="Bottom" 
                    Text="Accepted Meetings:"/>
         <ListBox x:Name="acceptedMeetingsListBox" Grid.Row="1" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4"  
+                 FontSize="12" Background="#c0c6eb"
                  ItemsSource="{Binding}" SelectionChanged="acceptedMeetingsListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">
-                        <TextBlock Text="{Binding DateAndHour}" />
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Date: "/>
+                                <TextBlock Text="{Binding DateAndHour}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Duration: "/>
+                                <TextBlock Text="{Binding Duration}"/>
+                            </StackPanel>
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button x:Name="toAcceptedListButton" Grid.Row="3" Grid.RowSpan="1" Grid.Column="6" Grid.ColumnSpan="2" 
+        <Button x:Name="toAcceptedListButton" Style="{StaticResource CustomButtonStyle}"
+                Grid.Row="3" Grid.RowSpan="1" Grid.Column="6" Grid.ColumnSpan="2" 
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 MinHeight="30" MinWidth="30"
                 Content="^" Click="toAcceptedListButton_Click"/>
@@ -63,17 +86,28 @@
         <TextBlock x:Name="pendingMeetingsTextBlock" Grid.Row="3" Grid.Column="5" VerticalAlignment="Bottom" 
                    Text="Pending Meetings:"/>
         <ListBox x:Name="pendingMeetingsListBox" Grid.Row="4" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4"  
+                 FontSize="12" Background="#c0c6eb"
                  ItemsSource="{Binding}" SelectionChanged="pendingMeetingsListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">
-                        <TextBlock Text="{Binding DateAndHour}" />
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Date: "/>
+                                <TextBlock Text="{Binding DateAndHour}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Duration: "/>
+                                <TextBlock Text="{Binding Duration}"/>
+                            </StackPanel>
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button x:Name="toDeclinedListButton" Grid.Row="6" Grid.RowSpan="1" Grid.Column="6" Grid.ColumnSpan="2" 
+        <Button x:Name="toDeclinedListButton" Style="{StaticResource CustomButtonStyle}"
+                Grid.Row="6" Grid.RowSpan="1" Grid.Column="6" Grid.ColumnSpan="2" 
                 VerticalAlignment="Center" HorizontalAlignment="Center"
                 MinHeight="30" MinWidth="30"
                 Content="v" Click="toDeclinedListButton_Click"/>
@@ -81,11 +115,21 @@
         <TextBlock x:Name="declinedMeetingsTextBlock" Grid.Row="6" Grid.Column="5" VerticalAlignment="Bottom" 
                    Text="Declined Meetings:"/>
         <ListBox x:Name="declinedMeetingsListBox" Grid.Row="7" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4"  
+                 FontSize="12" Background="#c0c6eb"
                  ItemsSource="{Binding}" SelectionChanged="declinedMeetingsListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">
-                        <TextBlock Text="{Binding DateAndHour}" />
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Date: "/>
+                                <TextBlock Text="{Binding DateAndHour}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Duration: "/>
+                                <TextBlock Text="{Binding Duration}"/>
+                            </StackPanel>
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

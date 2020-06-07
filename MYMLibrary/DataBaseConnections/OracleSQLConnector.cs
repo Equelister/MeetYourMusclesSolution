@@ -74,8 +74,13 @@ namespace MYMLibrary
                 {
                     while (reader.Read())
                     {
-                        user = new UserModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
+
+                        user = new UserModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5));
                     }
+                }
+                catch
+                {
+                    user = new UserModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), "");
                 }
                 finally
                 {
@@ -145,6 +150,14 @@ namespace MYMLibrary
                         }catch
                         {
                             trainer.setPricePerhour(0);
+                        }
+                        try
+                        {
+                            trainer.setImageUrl(reader.GetString(6));
+                        }
+                        catch
+                        {
+                            trainer.setImageUrl("");
                         }
                     }
                 }

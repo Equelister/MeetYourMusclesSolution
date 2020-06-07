@@ -12,6 +12,7 @@ namespace MYMLibrary
         protected String EmailAddress;
         protected String PhoneNumber;
         protected String Password;
+        protected String ImageUrl = "";
 
 
         public PersonModel()
@@ -34,6 +35,25 @@ namespace MYMLibrary
             LastName = LastNameValue;
             EmailAddress = EmailAddressValue;
             PhoneNumber = PhoneNumberValue;
+        }
+
+        protected PersonModel(int IDValue, String FirstNameValue, String LastNameValue, String EmailAddressValue, String PhoneNumberValue, String ImageUrlValue)
+        {
+            ID = IDValue;
+            FirstName = FirstNameValue;
+            LastName = LastNameValue;
+            EmailAddress = EmailAddressValue;
+            PhoneNumber = PhoneNumberValue;
+            ImageUrl = ImageUrlValue;
+        }
+
+        protected PersonModel(String FirstNameValue, String LastNameValue, String EmailAddressValue, String PhoneNumberValue, String ImageUrlValue)
+        {
+            FirstName = FirstNameValue;
+            LastName = LastNameValue;
+            EmailAddress = EmailAddressValue;
+            PhoneNumber = PhoneNumberValue;
+            ImageUrl = ImageUrlValue;
         }
 
         public int getID()
@@ -65,6 +85,11 @@ namespace MYMLibrary
             return this.Password;
         }
 
+        public String getImageUrl()
+        {
+            return this.ImageUrl;
+        }
+
         public void setID(int newID)
         {
             this.ID = newID;
@@ -93,6 +118,11 @@ namespace MYMLibrary
         public void setPassword(String newPassword)
         {
             this.Password = newPassword;
+        }
+
+        public void setImageUrl(String newImageUrl)
+        {
+            this.ImageUrl = newImageUrl;
         }
 
         public String getFullName()

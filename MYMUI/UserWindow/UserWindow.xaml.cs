@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace MYMUI
 {
@@ -19,10 +20,11 @@ namespace MYMUI
     {
         MainUserPage mainUserPage = new MainUserPage();
         CreateMeetingPage createMeetingPage = new CreateMeetingPage();
-
+        bool maximized = false;
         public UserWindow()
         {
             InitializeComponent();
+            setUpClock();
             UserWindowFrame.Content = mainUserPage;
         }
 
@@ -36,5 +38,48 @@ namespace MYMUI
         {
             UserWindowFrame.Content = mainUserPage;
         }
+
+        private void setUpClock()
+        {
+            DispatcherTimer clock = new DispatcherTimer();
+            clock.Interval = TimeSpan.FromMilliseconds(100);
+            clock.Tick += timerTickEvent;
+            clock.Start();
+        }
+
+        void timerTickEvent(object sender, EventArgs e)
+        {
+            clockTextBlock.Text = DateTime.Now.ToString(@"HH\:mm\:ss");
+        }
+
+        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+            UserWindowFrame.Content = mainUserPage;
+        }
+
+        private void ListViewItem_Selected_1(object sender, RoutedEventArgs e)
+        {
+            UserWindowFrame.Content = createMeetingPage;
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            SystemCommands.CloseWindow(this);
+        }
+
+        private void toTrayButton_Click(object sender, RoutedEventArgs e)
+        {
+            SystemCommands.MinimizeWindow(this);
+        }
+
+        private void maxminButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!maximized)
+                SystemCommands.MaximizeWindow(this);
+            else
+                SystemCommands.RestoreWindow(this);
+            maximized = !maximized;
+        }
     }
+    
 }

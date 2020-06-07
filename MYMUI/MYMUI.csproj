@@ -7,11 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\UserImageBasic.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.70" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MYMLibrary\MYMLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\UserImageBasic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

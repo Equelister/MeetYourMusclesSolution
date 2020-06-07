@@ -42,6 +42,16 @@ namespace MYMUI
             trainerNameTextBlock.Text = trainer.getFullName();
             trainerEmailTextBlock.Text = trainer.getEmailAddress();
             trainerPhoneNumberTextBlock.Text = trainer.getPhoneNumberStr();
+
+            if (!String.IsNullOrWhiteSpace(trainer.getImageUrl()))
+            {
+                String userImageUrl = trainer.getImageUrl();
+                BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.UriSource = new Uri(trainer.getImageUrl(), UriKind.RelativeOrAbsolute);
+                bi.EndInit();
+                userImage.Source = bi;
+            }
         }
 
         private void loadData()

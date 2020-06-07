@@ -21,6 +21,11 @@ namespace MYMLibrary
 
         }
 
+        public UserModel(String FirstNameValue, String LastNameValue, String EmailAddressValue, String PhoneNumberValue, String ImageUrlValue) : base(FirstNameValue, LastNameValue, EmailAddressValue, PhoneNumberValue, ImageUrlValue)
+        {
+
+        }
+
 
 
     }

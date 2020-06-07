@@ -6,13 +6,23 @@
       xmlns:local="clr-namespace:MYMUI"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1100"
-      Title="MainUserPage">
+      Title="MainUserPage"
+      Foreground="#b3bcfc"
+      FontSize="14"
+      FontFamily="Georgia"
+      >
 
     <Grid>
 
 
-        <StackPanel Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Top">
-            <Button Content="FUTURE CONTENT Avatar" MinHeight="150" MinWidth="150" MaxHeight="250" MaxWidth="250" HorizontalAlignment="Left"/>
+        <StackPanel Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Top">
+            <Image x:Name="userImage" Height="150" Width="150" HorizontalAlignment="Left" Margin="0,0,0,20">
+                <Image.Source>
+                    <BitmapImage UriSource="/Images/UserImageBasic.png" />
+                </Image.Source>
+            </Image>
+            
+            
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Welcome: "/>
                 <TextBlock x:Name="userNameTextBlock"/>
@@ -27,50 +37,79 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Grid.Row="5" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Bottom">
+        <StackPanel Grid.Row="5" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center">
             <TextBlock Text="Trainer:" Margin="0,5,0,5"/>
-            <TextBox x:Name="trainerTextBox" IsReadOnly="True"/>
-            
+            <TextBox x:Name="trainerTextBox" Style="{StaticResource CustomTextBox}"
+                     IsReadOnly="True"/>
+
             <TextBlock Text="Trainer Phone Number:" Margin="0,5,0,5"/>
-            <TextBox x:Name="trainerPhoneNumberTextBox" IsReadOnly="True"/>
+            <TextBox x:Name="trainerPhoneNumberTextBox" Style="{StaticResource CustomTextBox}"
+                     IsReadOnly="True"/>
 
             <TextBlock Text="Place:" Margin="0,5,0,5"/>
-            <TextBox x:Name="placeTextBox" IsReadOnly="True"/>
+            <TextBox x:Name="placeTextBox" Style="{StaticResource CustomTextBox}"
+                     IsReadOnly="True"/>
 
             <TextBlock Text="Date and Hour:" Margin="0,5,0,5"/>
-            <TextBox x:Name="dateAndHourTextBox" IsReadOnly="True"/>
+            <TextBox x:Name="dateAndHourTextBox" Style="{StaticResource CustomTextBox}"
+                     IsReadOnly="True"/>
         </StackPanel>
         
         
         
-        <TextBlock x:Name="acceptedMeetingsTextBlock" Grid.Row="1" Grid.Column="5" VerticalAlignment="Bottom" 
+        <TextBlock x:Name="acceptedMeetingsTextBlock" Grid.Row="0" Grid.Column="5"
+                   Grid.ColumnSpan="3"
+                   VerticalAlignment="Bottom" 
                    Text="Accepted Meetings:"/>
-        <ListBox x:Name="acceptedMeetingsListBox" Grid.Row="2" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4" 
-                 ItemsSource="{Binding}" SelectionChanged="acceptedMeetingsListBox_SelectionChanged">
+        <ListBox x:Name="acceptedMeetingsListBox" Grid.Row="1" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="4" 
+                 ItemsSource="{Binding}" SelectionChanged="acceptedMeetingsListBox_SelectionChanged"
+                 FontSize="12" Background="#c0c6eb">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">
-                        <TextBlock Text="{Binding DateAndHour}" />
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Date: "/>
+                                <TextBlock Text="{Binding DateAndHour}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Duration: "/>
+                                <TextBlock Text="{Binding Duration}"/>
+                            </StackPanel>
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
 
-        <TextBlock x:Name="pendingMeetingsTextBlock" Grid.Row="4" Grid.Column="5" VerticalAlignment="Bottom" 
+        <TextBlock x:Name="pendingMeetingsTextBlock" Grid.Row="5" Grid.Column="5"
+                   Grid.ColumnSpan="3"
+                   VerticalAlignment="Bottom" 
                    Text="Pending Meetings:"/>
-        <ListBox x:Name="pendingMeetingsListBox" Grid.Row="5" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4" 
-                 ItemsSource="{Binding}" SelectionChanged="pendingMeetingsListBox_SelectionChanged">
+        <ListBox x:Name="pendingMeetingsListBox" Grid.Row="6" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="4" 
+                 ItemsSource="{Binding}" SelectionChanged="pendingMeetingsListBox_SelectionChanged"
+                 FontSize="12" Background="#c0c6eb">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">
-                        <TextBlock Text="{Binding DateAndHour}" />
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Date: "/>
+                                <TextBlock Text="{Binding DateAndHour}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Duration: "/>
+                                <TextBlock Text="{Binding Duration}"/>
+                            </StackPanel>
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button x:Name="refreshButton" Grid.Row="8" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Top"
+        <Button x:Name="refreshButton" Style="{StaticResource CustomButtonStyle}" 
+                Grid.Row="10" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Center"
                 MinHeight="20" MinWidth="60" MaxHeight="30" MaxWidth="80"
                 Content="Refresh" Click="refreshButton_Click" />
 
@@ -96,6 +135,9 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>

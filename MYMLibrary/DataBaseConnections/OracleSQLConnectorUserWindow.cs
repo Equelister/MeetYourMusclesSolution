@@ -24,9 +24,16 @@ namespace MYMLibrary
                     cmd.CommandType = CommandType.Text;
 
                     cmd.ExecuteNonQuery();
+                    //Console.WriteLine("1213231");
+
+
                 }
-                catch
+                catch (Exception e)
                 {
+                    // Extract some information from this exception, and then
+                    // throw it to the parent method.
+                    if (e.Source != null)
+                        Console.WriteLine("IOException source: {0}", e.Source);
                     return false;
                 }
                 finally
