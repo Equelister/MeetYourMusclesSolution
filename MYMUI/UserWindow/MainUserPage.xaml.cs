@@ -1,5 +1,6 @@
 ﻿using MYMLibrary;
 using MYMLibrary.Models;
+using MYMLibrary.DataBaseConnections;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
@@ -43,17 +44,13 @@ namespace MYMUI
             userEmailTextBlock.Text = user.getEmailAddress();
             userPhoneNumberTextBlock.Text = user.getPhoneNumberStr();
 
-            if (!String.IsNullOrWhiteSpace(user.getImageUrl()))
+            OracleSQLConnectorImages connector = new OracleSQLConnectorImages();
+            byte[] blob = connector.getImageBytes(GlobalClass.getUserID());
+            if(blob != null)
             {
-                String userImageUrl = user.getImageUrl();
-                BitmapImage bi = new BitmapImage();
-                bi.BeginInit();
-                bi.UriSource = new Uri(user.getImageUrl(), UriKind.RelativeOrAbsolute);
-                bi.EndInit();
-                userImage.Source = bi;
+                BitmapImage newImg = ToImage(blob);
+                userImage.Source = newImg;
             }
-
-            
         }
 
         private void loadData()
@@ -127,5 +124,56 @@ namespace MYMUI
             //pendingMeetingsListBox.Items.Clear();
             loadData();
         }
+
+        private void userImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                dlg.DefaultExt = ".jpg";
+                dlg.Filter = "Image File (.jpg; .png)|*.jpg; *.png";
+                Nullable<bool> result = dlg.ShowDialog();
+
+                if (result == true)
+                {
+                    string filename = dlg.FileName;
+                    BitmapImage newImg = new BitmapImage(new Uri(filename));
+                    var newImgSize = new System.IO.FileInfo(filename).Length;
+
+                    if (newImgSize > 204800 || newImg.PixelWidth > 256 || newImg.PixelHeight > 256)
+                    {
+                        MessageBox.Show("Selected image is too large. (Max 200kB | 256x256px)");
+                    }
+                    else
+                    {
+                        OracleSQLConnectorImages connector = new OracleSQLConnectorImages();
+                        if (connector.sendImageToDB(GlobalClass.getUserID(), filename))
+                            userImage.Source = newImg;
+                        else
+                            MessageBox.Show("Error, while sending image to DataBase.");
+                    }
+
+                }
+            }
+            catch
+            {
+            } 
+        }
+
+
+        public BitmapImage ToImage(byte[] array)
+        {
+            using (var ms = new System.IO.MemoryStream(array))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = ms;
+                image.EndInit();
+                return image;
+            }
+        }
+
+
     }
 }
