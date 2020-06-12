@@ -77,6 +77,14 @@ namespace MYMLibrary
                         {
                             trainer.setPricePerhour(0);
                         }
+                        try
+                        {
+                            trainer.setImageBlob((byte[])reader["image"]);
+                        }
+                        catch
+                        {
+                            trainer.setImageBlob(null);
+                        }
                         trainerList.Add(trainer);
                     }
                 }

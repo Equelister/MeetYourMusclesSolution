@@ -35,7 +35,14 @@ namespace MYMUI
             InitializeComponent();
             OracleSQLConnectorUserWindow oraclesql = new OracleSQLConnectorUserWindow();
             trainerList = oraclesql.loadAllTrainersFromDataBase();
-            putIntoTrainersListBoxTrainerList(trainerList);
+            //putIntoTrainersListBoxTrainerList(trainerList);
+            //trainersListBox.ItemsSource = trainerList;
+            setTable();
+        }
+
+        private void setTable()
+        {
+            trainersListBox.ItemsSource = trainerList;
         }
 
 

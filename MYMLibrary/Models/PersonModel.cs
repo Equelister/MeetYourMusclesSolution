@@ -7,12 +7,16 @@ namespace MYMLibrary
     public class PersonModel
     {
         protected int ID;
-        protected String FirstName;
-        protected String LastName;
+        public String FirstName { get; set; }
+        public String LastName { get; set; }
         protected String EmailAddress;
         protected String PhoneNumber;
         protected String Password;
-        protected String ImageUrl = "";
+        public byte[] ImageBlob { get; set; }
+
+        
+        
+        //protected String ImageUrl = "";
 
 
         public PersonModel()
@@ -44,16 +48,16 @@ namespace MYMLibrary
             LastName = LastNameValue;
             EmailAddress = EmailAddressValue;
             PhoneNumber = PhoneNumberValue;
-            ImageUrl = ImageUrlValue;
+            //ImageUrl = ImageUrlValue;
         }
 
-        protected PersonModel(String FirstNameValue, String LastNameValue, String EmailAddressValue, String PhoneNumberValue, String ImageUrlValue)
+        protected PersonModel(String FirstNameValue, String LastNameValue, String EmailAddressValue, String PhoneNumberValue, byte[] ImageBlobValue)
         {
             FirstName = FirstNameValue;
             LastName = LastNameValue;
             EmailAddress = EmailAddressValue;
             PhoneNumber = PhoneNumberValue;
-            ImageUrl = ImageUrlValue;
+            ImageBlob = ImageBlobValue;
         }
 
         public int getID()
@@ -85,9 +89,9 @@ namespace MYMLibrary
             return this.Password;
         }
 
-        public String getImageUrl()
+        public byte[] getImageBlob()
         {
-            return this.ImageUrl;
+            return this.ImageBlob;
         }
 
         public void setID(int newID)
@@ -120,10 +124,10 @@ namespace MYMLibrary
             this.Password = newPassword;
         }
 
-        public void setImageUrl(String newImageUrl)
+        public void setImageBlob(byte[] newImageBlob)
         {
-            this.ImageUrl = newImageUrl;
-        }
+            this.ImageBlob = newImageBlob;
+       }
 
         public String getFullName()
         {

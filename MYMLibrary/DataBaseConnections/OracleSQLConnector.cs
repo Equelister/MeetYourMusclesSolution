@@ -74,13 +74,13 @@ namespace MYMLibrary
                 {
                     while (reader.Read())
                     {
-
-                        user = new UserModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5));
+                        //                      firstname           last name               email               phone number        image
+                        user = new UserModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), (byte[])reader["image"]);
                     }
                 }
                 catch
                 {
-                    user = new UserModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), "");
+                    user = new UserModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), null);
                 }
                 finally
                 {
@@ -153,11 +153,11 @@ namespace MYMLibrary
                         }
                         try
                         {
-                            trainer.setImageUrl(reader.GetString(6));
+                            trainer.setImageBlob((byte[])reader["image"]);
                         }
                         catch
                         {
-                            trainer.setImageUrl("");
+                            trainer.setImageBlob(null);
                         }
                     }
                 }

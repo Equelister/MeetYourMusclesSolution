@@ -92,8 +92,29 @@
 
 
         <ListBox x:Name="trainersListBox" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="4"
-                 FontSize="12" Background="#c0c6eb"
+                 FontSize="12" Background="#c0c6eb" ItemsSource="{Binding}"
                  SelectionChanged="trainersListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding ImageBlob}" Width="50" Height="50"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="First Name: "/>
+                                    <TextBlock Text="{Binding FirstName}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Last Name:  "/>
+                                    <TextBlock Text="{Binding LastName}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
         <ListBox x:Name="placesListBox" Grid.Row="1" Grid.RowSpan="3" Grid.Column="6" Grid.ColumnSpan="4" 
                  FontSize="12" Background="#c0c6eb"

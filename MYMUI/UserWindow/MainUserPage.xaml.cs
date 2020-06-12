@@ -45,7 +45,7 @@ namespace MYMUI
             userPhoneNumberTextBlock.Text = user.getPhoneNumberStr();
 
             OracleSQLConnectorImages connector = new OracleSQLConnectorImages();
-            byte[] blob = connector.getImageBytes(GlobalClass.getUserID());
+            byte[] blob = user.getImageBlob();//connector.getImageBytes(GlobalClass.getUserID());
             if(blob != null)
             {
                 BitmapImage newImg = ToImage(blob);
@@ -147,7 +147,7 @@ namespace MYMUI
                     else
                     {
                         OracleSQLConnectorImages connector = new OracleSQLConnectorImages();
-                        if (connector.sendImageToDB(GlobalClass.getUserID(), filename))
+                        if (connector.sendImageToDB("user_table", GlobalClass.getUserID(), filename))
                             userImage.Source = newImg;
                         else
                             MessageBox.Show("Error, while sending image to DataBase.");

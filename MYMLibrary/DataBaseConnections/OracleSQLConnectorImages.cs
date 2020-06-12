@@ -11,13 +11,13 @@ namespace MYMLibrary.DataBaseConnections
     public class OracleSQLConnectorImages : OracleSQLConnector
     {
 
-        public byte[] getImageBytes(int id)
+        public byte[] getImageBytes(String tableName, int id)
         {
             using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
             {
                 connection.Open();
                 OracleCommand cmd;
-                string sql = String.Format("Select image from user_table where id = {0}", id);
+                string sql = String.Format("Select image from {1} where id = {0}", id, tableName);
 
                 cmd = new OracleCommand(sql, connection);
                 cmd.CommandType = CommandType.Text;
@@ -42,7 +42,7 @@ namespace MYMLibrary.DataBaseConnections
         }
 
 
-        public bool sendImageToDB(int id, string filename)
+        public bool sendImageToDB(String tableName, int id, string filename)
         {
             bool success = true;
             using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
@@ -57,7 +57,7 @@ namespace MYMLibrary.DataBaseConnections
                         fls.Read(blob, 0, System.Convert.ToInt32(fls.Length));
                         fls.Close();
 
-                        string sql = "Update user_table set image = :BLOBFILE WHERE id = " + id; 
+                        string sql = "Update " + tableName + " set image = :BLOBFILE WHERE id = " + id; 
                         connection.Open();
 
                         using (OracleCommand cmd = new OracleCommand(sql, connection))
