@@ -19,7 +19,7 @@
 
 
 
-        <StackPanel Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="5" Grid.RowSpan="4">
+        <StackPanel Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="5" Grid.RowSpan="5">
 
             <TextBlock Text="{x:Static properties:MultiLanguage.Trainer}" Margin="0,5,0,5"/>
             <TextBox x:Name="trainerTextBox" Style="{StaticResource CustomTextBox}"
@@ -83,8 +83,10 @@
                         Content="{x:Static properties:MultiLanguage.Add}"
                         Margin="0,0,0,0" MinWidth="70" 
                         Click="addMeetingButton_Click"/>
-                <Label x:Name="addLabelSuccess" Content="{x:Static properties:MultiLanguage.AddLabelSuccess}" Visibility="Hidden"/>
-                <Label x:Name="addLabelFailed" Content="{x:Static properties:MultiLanguage.AddLabelFailed}" Visibility="Hidden"/>
+                <Label x:Name="addLabelSuccess" Content="{x:Static properties:MultiLanguage.AddLabelSuccess}" 
+                       Visibility="Hidden" Foreground="Green"/>
+                <Label x:Name="addLabelFailed" Content="{x:Static properties:MultiLanguage.AddLabelFailed}" 
+                       Visibility="Hidden" Foreground="Red"/>
             </StackPanel>
 
             
@@ -105,11 +107,11 @@
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="10">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="First Name: "/>
+                                    <TextBlock Text="{x:Static properties:MultiLanguage.FirstName}"/>
                                     <TextBlock Text="{Binding FirstName}"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Last Name:  "/>
+                                    <TextBlock Text="{x:Static properties:MultiLanguage.LastName}"/>
                                     <TextBlock Text="{Binding LastName}"/>
                                 </StackPanel>
                             </StackPanel>
@@ -149,6 +151,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>

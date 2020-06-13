@@ -108,6 +108,11 @@ namespace MYMUI
                     pendingMeetingsListBox.Items.Refresh();
                     declinedMeetingsListBox.Items.Refresh();
                 }
+                else
+                {
+                    meetingToMove.Accepted = 0;
+                    meetingToMove.New = 1;
+                }
             }
         }
 
@@ -126,6 +131,10 @@ namespace MYMUI
                     acceptedMeetingsList.Add(meetingToMove);
                     pendingMeetingsListBox.Items.Refresh();
                     acceptedMeetingsListBox.Items.Refresh();
+                }else
+                {
+                    meetingToMove.Accepted = 0;
+                    meetingToMove.New = 1;
                 }
             }
         }

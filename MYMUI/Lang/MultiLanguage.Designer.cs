@@ -401,5 +401,27 @@ namespace MYMUI.Lang {
                 return ResourceManager.GetString("Welcome", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ListBoxDate
+        {
+            get
+            {
+                return ResourceManager.GetString("ListBoxDate", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ListBoxDuration
+        {
+            get
+            {
+                return ResourceManager.GetString("ListBoxDuration", resourceCulture);
+            }
+        }
     }
 }

@@ -71,11 +71,11 @@
                     <Grid Margin="0,2">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Date: "/>
+                                <TextBlock Text="{x:Static properties:MultiLanguage.ListBoxDate}"/>
                                 <TextBlock Text="{Binding DateAndHour}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Duration: "/>
+                                <TextBlock Text="{x:Static properties:MultiLanguage.ListBoxDuration}"/>
                                 <TextBlock Text="{Binding Duration}"/>
                             </StackPanel>
                         </StackPanel>
@@ -97,11 +97,11 @@
                     <Grid Margin="0,2">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Date: "/>
+                                <TextBlock Text="{x:Static properties:MultiLanguage.ListBoxDate}"/>
                                 <TextBlock Text="{Binding DateAndHour}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Duration: "/>
+                                <TextBlock Text="{x:Static properties:MultiLanguage.ListBoxDuration}"/>
                                 <TextBlock Text="{Binding Duration}"/>
                             </StackPanel>
                         </StackPanel>

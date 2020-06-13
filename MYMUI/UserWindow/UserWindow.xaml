@@ -40,13 +40,13 @@
                           HorizontalAlignment="Stretch" VerticalAlignment="Center"
                           HorizontalContentAlignment="Center"
                           Height="60"
-                          FontSize="20" Content="{x:Static properties:MultiLanguage.MainPage}">
+                          FontSize="16" Content="{x:Static properties:MultiLanguage.MainPage}">
                 </ListViewItem>
                 <ListViewItem Selected="ListViewItem_Selected_1"
                           HorizontalAlignment="Stretch" VerticalAlignment="Center"
                           HorizontalContentAlignment="Center"
                           Height="60"
-                          FontSize="20" Content="{x:Static properties:MultiLanguage.CreateMeeting}">
+                          FontSize="16" Content="{x:Static properties:MultiLanguage.CreateMeeting}">
                 </ListViewItem>
             </ListView>
 

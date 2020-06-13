@@ -38,11 +38,11 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,20">
                 <Button x:Name="addPlaceButton" Style="{StaticResource CustomButtonStyle}" 
-                        Content="{x:Static properties:MultiLanguage.Add}" Margin="0,0,40,0" MinWidth="70"
+                        Content="{x:Static properties:MultiLanguage.Add}" Margin="0,0,40,0" MinWidth="100"
                         Click="addPlaceButton_Click"/>
 
                 <Button x:Name="updatePlaceButton" Style="{StaticResource CustomButtonStyle}"
-                        Content="{x:Static properties:MultiLanguage.Update}" MinWidth="70"
+                        Content="{x:Static properties:MultiLanguage.Update}" MinWidth="100"
                         Click="updatePlaceButton_Click"/>
             </StackPanel>
         </StackPanel>

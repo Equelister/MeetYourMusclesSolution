@@ -130,13 +130,13 @@
     <value>Operacja zakończona sukcesem</value>
   </data>
   <data name="City" xml:space="preserve">
-    <value>Miasto</value>
+    <value>Miasto: </value>
   </data>
   <data name="Client" xml:space="preserve">
-    <value>Klient</value>
+    <value>Klient: </value>
   </data>
   <data name="ClientPhoneNumber" xml:space="preserve">
-    <value>Numer Telefonu Klienta</value>
+    <value>Numer Telefonu Klienta: </value>
   </data>
   <data name="CreateMeeting" xml:space="preserve">
     <value>Stwórz Sportkanie</value>
@@ -145,10 +145,10 @@
     <value>Stwórz Miejsce</value>
   </data>
   <data name="Date" xml:space="preserve">
-    <value>Data</value>
+    <value>Data: </value>
   </data>
   <data name="DateAndHour" xml:space="preserve">
-    <value>Data i godzina</value>
+    <value>Data i godzina: </value>
   </data>
   <data name="DatePickerText" xml:space="preserve">
     <value>Wybierz Datę</value>
@@ -157,25 +157,31 @@
     <value>Odrzucone Spotkania</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Opis</value>
+    <value>Opis: </value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Czas Trwania</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>Email</value>
+    <value>Email: </value>
   </data>
   <data name="ErrorLabelFailedLogin" xml:space="preserve">
-    <value>Invalid Data</value>
+    <value>Niepoprawne dane</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>Imię</value>
+    <value>Imię: </value>
   </data>
   <data name="HourAndMinutes" xml:space="preserve">
     <value>Godzina z minutami</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Nazwisko</value>
+    <value>Nazwisko: </value>
+  </data>
+  <data name="ListBoxDate" xml:space="preserve">
+    <value>Data: </value>
+  </data>
+  <data name="ListBoxDuration" xml:space="preserve">
+    <value>Czas Trwania: </value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Zaloguj</value>
@@ -187,19 +193,19 @@
     <value>Strona Główna</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Hasło</value>
   </data>
   <data name="PendingMeetings" xml:space="preserve">
-    <value>Oczcekujące Spotkania</value>
+    <value>Oczekujące Spotkania</value>
   </data>
   <data name="PhoneNumber" xml:space="preserve">
-    <value>Numer Telefonu</value>
+    <value>Numer Telefonu: </value>
   </data>
   <data name="Place" xml:space="preserve">
-    <value>Miejsce</value>
+    <value>Miejsce: </value>
   </data>
   <data name="Postcode" xml:space="preserve">
-    <value>Kod Pocztowy</value>
+    <value>Kod Pocztowy: </value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Odśwież</value>
@@ -211,24 +217,24 @@
     <value>Rejestracja</value>
   </data>
   <data name="RetypePassword" xml:space="preserve">
-    <value>Powtórz Hasło</value>
+    <value>Powtórz Hasło: </value>
   </data>
   <data name="Street" xml:space="preserve">
-    <value>Ulica</value>
+    <value>Ulica: </value>
   </data>
   <data name="Trainer" xml:space="preserve">
-    <value>Trener</value>
+    <value>Trener: </value>
   </data>
   <data name="TrainerPhoneNumber" xml:space="preserve">
-    <value>Numer Telefonu Trenera</value>
+    <value>Numer Telefonu Trenera: </value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Zaaktualizuj</value>
   </data>
   <data name="User" xml:space="preserve">
-    <value>Użyytkownik</value>
+    <value>Użytkownik</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Witaj!</value>
+    <value>Witaj, </value>
   </data>
 </root>
