@@ -24,4 +24,37 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Lang\MultiLanguage.Designer.cs">
+      <DependentUpon>MultiLanguage.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Lang\MultiLanguage.en.Designer.cs">
+      <DependentUpon>MultiLanguage.en.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Lang\MultiLanguage.pl-PL.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MultiLanguage.pl-PL.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Lang\MultiLanguage.resx">
+      <LastGenOutput>MultiLanguage.pl-PL.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Lang\MultiLanguage.en.resx">
+      <LastGenOutput>MultiLanguage.pl-PL.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Lang\MultiLanguage.pl-PL.resx">
+      <LastGenOutput>MultiLanguage.pl-PL.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

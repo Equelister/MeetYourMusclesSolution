@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MYMUI"
+        xmlns:properties="clr-namespace:MYMUI.Lang"
         mc:Ignorable="d"
         Title="UserWindow" Height="720" Width="1280" MinHeight="720" MinWidth="1280"
         WindowStartupLocation="CenterScreen"
@@ -39,13 +40,13 @@
                           HorizontalAlignment="Stretch" VerticalAlignment="Center"
                           HorizontalContentAlignment="Center"
                           Height="60"
-                          FontSize="20" Content="Main Page">
+                          FontSize="20" Content="{x:Static properties:MultiLanguage.MainPage}">
                 </ListViewItem>
                 <ListViewItem Selected="ListViewItem_Selected_1"
                           HorizontalAlignment="Stretch" VerticalAlignment="Center"
                           HorizontalContentAlignment="Center"
                           Height="60"
-                          FontSize="20" Content="Create Meeting">
+                          FontSize="20" Content="{x:Static properties:MultiLanguage.CreateMeeting}">
                 </ListViewItem>
             </ListView>
 

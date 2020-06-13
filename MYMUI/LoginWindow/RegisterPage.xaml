@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MYMUI"
+      xmlns:properties="clr-namespace:MYMUI.Lang"
       mc:Ignorable="d"  
       d:DesignHeight="450" d:DesignWidth="240"
       Title="RegisterPage"
@@ -51,36 +52,36 @@
 
 
         <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="14">
-         
-            <TextBlock Text="First name" Margin="0,0,0,5"/>
+
+            <TextBlock Text="{x:Static properties:MultiLanguage.FirstName}" Margin="0,0,0,5"/>
             <TextBox x:Name="firstNameTextBox" Style="{StaticResource CustomTextBox}" MaxHeight="24"/>
 
-            <TextBlock Text="Last name" Margin="0,0,0,5"/>
+            <TextBlock Text="{x:Static properties:MultiLanguage.LastName}" Margin="0,0,0,5"/>
             <TextBox x:Name="lastNameTextBox" Style="{StaticResource CustomTextBox}" MaxHeight="24"/>
 
-            <TextBlock Text="Email" Margin="0,0,0,5"/>
+            <TextBlock Text="{x:Static properties:MultiLanguage.Email}" Margin="0,0,0,5"/>
             <TextBox x:Name="emailTextBox" Style="{StaticResource CustomTextBox}" MaxHeight="24"/>
 
-            <TextBlock Text="Password" Margin="0,0,0,5"/>
+            <TextBlock Text="{x:Static properties:MultiLanguage.Password}" Margin="0,0,0,5"/>
             <PasswordBox x:Name="passwordPasswordBox" Style="{StaticResource CustomPasswordBox}" MaxHeight="24"/>
 
-            <TextBlock Text="Retype Password" Margin="0,0,0,5"/>
+            <TextBlock Text="{x:Static properties:MultiLanguage.RetypePassword}" Margin="0,0,0,5"/>
             <PasswordBox x:Name="retypePasswordPasswordBox" Style="{StaticResource CustomPasswordBox}" MaxHeight="24"/>
 
-            <TextBlock Text="Phone number" Margin="0,5,0,5"/>
+            <TextBlock Text="{x:Static properties:MultiLanguage.PhoneNumber}" Margin="0,5,0,5"/>
             <TextBox x:Name="phoneNumberTextBox" Style="{StaticResource CustomTextBox}" MaxHeight="24"/>
 
             <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5"
                     Margin="10,10,10,10" HorizontalAlignment="Center" Opacity="0.8"
                    >
                 <StackPanel Orientation="Horizontal" Margin="5">
-                    <RadioButton x:Name="userRadioButton" Content="User" Margin="0,0,10,0" IsChecked="True" Foreground="#b3bcfc"/>
-                    <RadioButton x:Name="trainerRadioButton" Content="Trainer" Foreground="#b3bcfc"/>
+                    <RadioButton x:Name="userRadioButton" Content="{x:Static properties:MultiLanguage.User}" Margin="0,0,10,0" IsChecked="True" Foreground="#b3bcfc"/>
+                    <RadioButton x:Name="trainerRadioButton" Content="{x:Static properties:MultiLanguage.Trainer}" Foreground="#b3bcfc"/>
                 </StackPanel>
             </Border>
 
             <Button x:Name="registerButton" Style="{StaticResource CustomButtonStyle}"
-                    Content="Register" 
+                    Content="{x:Static properties:MultiLanguage.Register}" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" 
                     MinWidth="70"
                     Margin="0,0,0,20" Click="registerButton_Click"/>

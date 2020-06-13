@@ -192,10 +192,12 @@ namespace MYMUI
                 OracleSQLConnectorUserWindow oraclesql = new OracleSQLConnectorUserWindow();
                 if (oraclesql.insertMeetingToDBReturnItsID(meet))
                 {
-                    addLabel.Content = "Added successfully!";
+                    addLabelFailed.Visibility = Visibility.Hidden;
+                    addLabelSuccess.Visibility = Visibility.Visible;
                 }else
                 {
-                    addLabel.Content = "Error.";
+                    addLabelFailed.Visibility = Visibility.Visible;
+                    addLabelSuccess.Visibility = Visibility.Hidden;
                 }
                     
                 // date + timepicker = DateTime
@@ -205,7 +207,8 @@ namespace MYMUI
             }
             else
             {
-                addLabel.Content = "Data is not valid!";
+                addLabelSuccess.Visibility = Visibility.Hidden;
+                addLabelFailed.Visibility = Visibility.Visible;
                 //Data invalid error
             }
 

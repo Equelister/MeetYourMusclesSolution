@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MYMUI"
+      xmlns:properties="clr-namespace:MYMUI.Lang"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1100"
       Title="MainUserPage"
@@ -25,33 +26,33 @@
             
             
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Welcome: "/>
+                <TextBlock Text="{x:Static properties:MultiLanguage.Welcome}"/>
                 <TextBlock x:Name="userNameTextBlock"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Email: "/>
+                <TextBlock Text="{x:Static properties:MultiLanguage.Email}"/>
                 <TextBlock x:Name="userEmailTextBlock"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Phone Number: "/>
+                <TextBlock Text="{x:Static properties:MultiLanguage.PhoneNumber}"/>
                 <TextBlock x:Name="userPhoneNumberTextBlock"/>
             </StackPanel>
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center">
-            <TextBlock Text="Trainer:" Margin="0,5,0,5"/>
+            <TextBlock Text="{x:Static properties:MultiLanguage.Trainer}" Margin="0,5,0,5"/>
             <TextBox x:Name="trainerTextBox" Style="{StaticResource CustomTextBox}"
                      IsReadOnly="True"/>
 
-            <TextBlock Text="Trainer Phone Number:" Margin="0,5,0,5"/>
+            <TextBlock Text="{x:Static properties:MultiLanguage.TrainerPhoneNumber}" Margin="0,5,0,5"/>
             <TextBox x:Name="trainerPhoneNumberTextBox" Style="{StaticResource CustomTextBox}"
                      IsReadOnly="True"/>
 
-            <TextBlock Text="Place:" Margin="0,5,0,5"/>
+            <TextBlock Text="{x:Static properties:MultiLanguage.Place}" Margin="0,5,0,5"/>
             <TextBox x:Name="placeTextBox" Style="{StaticResource CustomTextBox}"
                      IsReadOnly="True"/>
 
-            <TextBlock Text="Date and Hour:" Margin="0,5,0,5"/>
+            <TextBlock Text="{x:Static properties:MultiLanguage.DateAndHour}" Margin="0,5,0,5"/>
             <TextBox x:Name="dateAndHourTextBox" Style="{StaticResource CustomTextBox}"
                      IsReadOnly="True"/>
         </StackPanel>
@@ -61,7 +62,7 @@
         <TextBlock x:Name="acceptedMeetingsTextBlock" Grid.Row="0" Grid.Column="5"
                    Grid.ColumnSpan="3"
                    VerticalAlignment="Bottom" 
-                   Text="Accepted Meetings:"/>
+                   Text="{x:Static properties:MultiLanguage.AcceptedMeetings}"/>
         <ListBox x:Name="acceptedMeetingsListBox" Grid.Row="1" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="4" 
                  ItemsSource="{Binding}" SelectionChanged="acceptedMeetingsListBox_SelectionChanged"
                  FontSize="12" Background="#c0c6eb">
@@ -87,7 +88,7 @@
         <TextBlock x:Name="pendingMeetingsTextBlock" Grid.Row="5" Grid.Column="5"
                    Grid.ColumnSpan="3"
                    VerticalAlignment="Bottom" 
-                   Text="Pending Meetings:"/>
+                   Text="{x:Static properties:MultiLanguage.PendingMeetings}"/>
         <ListBox x:Name="pendingMeetingsListBox" Grid.Row="6" Grid.RowSpan="4" Grid.Column="5" Grid.ColumnSpan="4" 
                  ItemsSource="{Binding}" SelectionChanged="pendingMeetingsListBox_SelectionChanged"
                  FontSize="12" Background="#c0c6eb">
@@ -112,7 +113,7 @@
         <Button x:Name="refreshButton" Style="{StaticResource CustomButtonStyle}" 
                 Grid.Row="10" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Center"
                 MinHeight="20" MinWidth="60" MaxHeight="30" MaxWidth="80"
-                Content="Refresh" Click="refreshButton_Click" />
+                Content="{x:Static properties:MultiLanguage.Refresh}" Click="refreshButton_Click" />
 
 
 

@@ -56,7 +56,7 @@ namespace MYMUI
                     }
                 }else
                 {
-                    errorLabel.Content = "Invalid Data!";
+                    errorLabel.Visibility = Visibility.Visible;
                 }
             }
         }

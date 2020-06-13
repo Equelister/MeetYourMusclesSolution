@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MYMUI"
+      xmlns:properties="clr-namespace:MYMUI.Lang"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1100"
       Title="MainTrainerPage"
@@ -23,40 +24,40 @@
                 </Image.Source>
             </Image>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Welcome: "/>
+                <TextBlock Text="{x:Static properties:MultiLanguage.Welcome}"/>
                 <TextBlock x:Name="trainerNameTextBlock"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Email: "/>
+                <TextBlock Text="{x:Static properties:MultiLanguage.Email}"/>
                 <TextBlock x:Name="trainerEmailTextBlock"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Phone Number: "/>
+                <TextBlock Text="{x:Static properties:MultiLanguage.PhoneNumber}"/>
                 <TextBlock x:Name="trainerPhoneNumberTextBlock"/>
             </StackPanel>
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center">
-            <TextBlock Text="Client:" Margin="0,5,0,5"/>
+            <TextBlock Text="{x:Static properties:MultiLanguage.Client}" Margin="0,5,0,5"/>
             <TextBox x:Name="userTextBox" Style="{StaticResource CustomTextBox}"
                      IsReadOnly="True"/>
 
-            <TextBlock Text="Client Phone Number:" Margin="0,5,0,5"/>
+            <TextBlock Text="{x:Static properties:MultiLanguage.ClientPhoneNumber}" Margin="0,5,0,5"/>
             <TextBox x:Name="userPhoneNumberTextBox" Style="{StaticResource CustomTextBox}"
                      IsReadOnly="True"/>
 
-            <TextBlock Text="Place:" Margin="0,5,0,5"/>
+            <TextBlock Text="{x:Static properties:MultiLanguage.Place}" Margin="0,5,0,5"/>
             <TextBox x:Name="placeTextBox" Style="{StaticResource CustomTextBox}"
                      IsReadOnly="True"/>
 
-            <TextBlock Text="Date and Hour:" Margin="0,5,0,5"/>
+            <TextBlock Text="{x:Static properties:MultiLanguage.DateAndHour}" Margin="0,5,0,5"/>
             <TextBox x:Name="dateAndHourTextBox" Style="{StaticResource CustomTextBox}"
                      IsReadOnly="True"/>
         </StackPanel>
 
 
         <TextBlock x:Name="acceptedMeetingsTextBlock" Grid.Row="0" Grid.Column="5" VerticalAlignment="Bottom" 
-                   Text="Accepted Meetings:"/>
+                   Text="{x:Static properties:MultiLanguage.AcceptedMeetings}"/>
         <ListBox x:Name="acceptedMeetingsListBox" Grid.Row="1" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4"  
                  FontSize="12" Background="#c0c6eb"
                  ItemsSource="{Binding}" SelectionChanged="acceptedMeetingsListBox_SelectionChanged">
@@ -65,11 +66,11 @@
                     <Grid Margin="0,2">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Date: "/>
+                                <TextBlock Text="{x:Static properties:MultiLanguage.Date}"/>
                                 <TextBlock Text="{Binding DateAndHour}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Duration: "/>
+                                <TextBlock Text="{x:Static properties:MultiLanguage.Duration}"/>
                                 <TextBlock Text="{Binding Duration}"/>
                             </StackPanel>
                         </StackPanel>
@@ -85,7 +86,7 @@
                 Content="^" Click="toAcceptedListButton_Click"/>
 
         <TextBlock x:Name="pendingMeetingsTextBlock" Grid.Row="3" Grid.Column="5" VerticalAlignment="Bottom" 
-                   Text="Pending Meetings:"/>
+                   Text="{x:Static properties:MultiLanguage.PendingMeetings}"/>
         <ListBox x:Name="pendingMeetingsListBox" Grid.Row="4" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4"  
                  FontSize="12" Background="#c0c6eb"
                  ItemsSource="{Binding}" SelectionChanged="pendingMeetingsListBox_SelectionChanged">
@@ -94,11 +95,11 @@
                     <Grid Margin="0,2">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Date: "/>
+                                <TextBlock Text="{x:Static properties:MultiLanguage.Date}"/>
                                 <TextBlock Text="{Binding DateAndHour}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Duration: "/>
+                                <TextBlock Text="{x:Static properties:MultiLanguage.Duration}"/>
                                 <TextBlock Text="{Binding Duration}"/>
                             </StackPanel>
                         </StackPanel>
@@ -114,7 +115,7 @@
                 Content="v" Click="toDeclinedListButton_Click"/>
 
         <TextBlock x:Name="declinedMeetingsTextBlock" Grid.Row="6" Grid.Column="5" VerticalAlignment="Bottom" 
-                   Text="Declined Meetings:"/>
+                   Text="{x:Static properties:MultiLanguage.DeclinedMeetings}"/>
         <ListBox x:Name="declinedMeetingsListBox" Grid.Row="7" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="4"  
                  FontSize="12" Background="#c0c6eb"
                  ItemsSource="{Binding}" SelectionChanged="declinedMeetingsListBox_SelectionChanged">
@@ -123,11 +124,11 @@
                     <Grid Margin="0,2">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Date: "/>
+                                <TextBlock Text="{x:Static properties:MultiLanguage.Date}"/>
                                 <TextBlock Text="{Binding DateAndHour}"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Duration: "/>
+                                <TextBlock Text="{x:Static properties:MultiLanguage.Duration}"/>
                                 <TextBlock Text="{Binding Duration}"/>
                             </StackPanel>
                         </StackPanel>
