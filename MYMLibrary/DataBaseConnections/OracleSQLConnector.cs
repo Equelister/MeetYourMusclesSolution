@@ -22,33 +22,39 @@ namespace MYMLibrary
         public List<PlaceModel> loadPlacesFromDataBase()
         {
             List<PlaceModel> placesList = new List<PlaceModel>();
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
+            try
             {
-                connection.Open();
-                OracleCommand cmd;
-                string sql = String.Format("select * from place_table WHERE trainer_table_id = {0}", GlobalClass.getTrainerID());
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                OracleDataReader reader = cmd.ExecuteReader();
-                try
+                using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    OracleCommand cmd;
+                    string sql = String.Format("select * from place_table WHERE trainer_table_id = {0}", GlobalClass.getTrainerID());
+
+                    cmd = new OracleCommand(sql, connection);
+                    cmd.CommandType = CommandType.Text;
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    try
                     {
-                        PlaceModel place = new PlaceModel();
-                        place.setID(reader.GetInt32(0));
-                        place.setCity(reader.GetString(1));
-                        place.setPostCode(reader.GetString(2));
-                        place.setStreet(reader.GetString(3));
-                        place.setDescription(reader.GetString(4));
-                        placesList.Add(place);
+                        while (reader.Read())
+                        {
+                            PlaceModel place = new PlaceModel();
+                            place.setID(reader.GetInt32(0));
+                            place.setCity(reader.GetString(1));
+                            place.setPostCode(reader.GetString(2));
+                            place.setStreet(reader.GetString(3));
+                            place.setDescription(reader.GetString(4));
+                            placesList.Add(place);
+                        }
+                    }
+                    finally
+                    {
+                        reader.Close();
                     }
                 }
-                finally
-                {
-                    reader.Close();
-                }
+            }catch
+            {
+
             }
             return placesList;
         }
@@ -60,32 +66,39 @@ namespace MYMLibrary
         public UserModel loadUserFromDataBase()
         {
             UserModel user = new UserModel();
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
+            try
             {
-                connection.Open();
-                OracleCommand cmd;
-                string sql = String.Format("select * from user_table WHERE id = {0}", GlobalClass.getUserID());
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                OracleDataReader reader = cmd.ExecuteReader();
-                try
+                using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    OracleCommand cmd;
+                    string sql = String.Format("select * from user_table WHERE id = {0}", GlobalClass.getUserID());
+
+                    cmd = new OracleCommand(sql, connection);
+                    cmd.CommandType = CommandType.Text;
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    try
                     {
-                        //                      firstname           last name               email               phone number        image
-                        user = new UserModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), (byte[])reader["image"]);
+                        while (reader.Read())
+                        {
+                            //                      firstname           last name               email               phone number        image
+                            user = new UserModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), (byte[])reader["image"]);
+                        }
+                    }
+                    catch
+                    {
+                        user = new UserModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), null);
+                    }
+                    finally
+                    {
+                        reader.Close();
                     }
                 }
-                catch
-                {
-                    user = new UserModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), null);
-                }
-                finally
-                {
-                    reader.Close();
-                }
+            }
+            catch
+            {
+
             }
             return user;
         }
@@ -93,31 +106,37 @@ namespace MYMLibrary
         public PlaceModel loadPlaceFromDataBase(int placeID)
         {
             PlaceModel place = new PlaceModel();
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
+            try
             {
-                connection.Open();
-                OracleCommand cmd;
-                string sql = String.Format("select * from place_table WHERE id = {0}", placeID);
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                OracleDataReader reader = cmd.ExecuteReader();
-                try
+                using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    OracleCommand cmd;
+                    string sql = String.Format("select * from place_table WHERE id = {0}", placeID);
+
+                    cmd = new OracleCommand(sql, connection);
+                    cmd.CommandType = CommandType.Text;
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    try
                     {
-                        place.setID(reader.GetInt32(0));
-                        place.setCity(reader.GetString(1));
-                        place.setPostCode(reader.GetString(2));
-                        place.setStreet(reader.GetString(3));
-                        place.setDescription(reader.GetString(4));
+                        while (reader.Read())
+                        {
+                            place.setID(reader.GetInt32(0));
+                            place.setCity(reader.GetString(1));
+                            place.setPostCode(reader.GetString(2));
+                            place.setStreet(reader.GetString(3));
+                            place.setDescription(reader.GetString(4));
+                        }
+                    }
+                    finally
+                    {
+                        reader.Close();
                     }
                 }
-                finally
-                {
-                    reader.Close();
-                }
+            }catch
+            {
+
             }
             return place;
         }
@@ -129,41 +148,45 @@ namespace MYMLibrary
         public TrainerModel loadTrainerFromDataBase()
         {
             TrainerModel trainer = new TrainerModel();
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
+            try
             {
-                connection.Open();
-                OracleCommand cmd;
-                string sql = String.Format("select * from trainer_table WHERE id = {0}", GlobalClass.getTrainerID());
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                OracleDataReader reader = cmd.ExecuteReader();
-                try
+                using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    OracleCommand cmd;
+                    string sql = String.Format("select * from trainer_table WHERE id = {0}", GlobalClass.getTrainerID());
+
+                    cmd = new OracleCommand(sql, connection);
+                    cmd.CommandType = CommandType.Text;
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    try
                     {
-                        trainer = new TrainerModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
-                        try
+                        while (reader.Read())
                         {
-                            trainer.setPricePerhour(reader.GetInt32(5));
-                        }catch
-                        {
-                            trainer.setPricePerhour(0);
-                        }
-                        try
-                        {
-                            trainer.setImageBlob((byte[])reader["image"]);
-                        }
-                        catch
-                        {
-                            trainer.setImageBlob(null);
+                            trainer = new TrainerModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
+                            try
+                            {
+                                trainer.setPricePerhour(reader.GetInt32(5));
+                            }
+                            catch
+                            {
+                                trainer.setPricePerhour(0);
+                            }
+                            try
+                            {
+                                trainer.setImageBlob((byte[])reader["image"]);
+                            }
+                            catch
+                            {
+                                trainer.setImageBlob(null);
+                            }
                         }
                     }
-                }
-                finally
-                {
-                    reader.Close();
+                    finally
+                    {
+                        reader.Close();
+                    }
                 }
             }
             return trainer;
@@ -172,35 +195,42 @@ namespace MYMLibrary
         public TrainerModel loadTrainerFromDataBase(int trainerID)
         {
             TrainerModel trainer = new TrainerModel();
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
+            try
             {
-                connection.Open();
-                OracleCommand cmd;
-                string sql = String.Format("select * from trainer_table WHERE id = {0}", trainerID);
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                OracleDataReader reader = cmd.ExecuteReader();
-                try
+                using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    OracleCommand cmd;
+                    string sql = String.Format("select * from trainer_table WHERE id = {0}", trainerID);
+
+                    cmd = new OracleCommand(sql, connection);
+                    cmd.CommandType = CommandType.Text;
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    try
                     {
-                        trainer = new TrainerModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
-                        try
+                        while (reader.Read())
                         {
-                            trainer.setPricePerhour(reader.GetInt32(5));
-                        }
-                        catch
-                        {
-                            trainer.setPricePerhour(0);
+                            trainer = new TrainerModel(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
+                            try
+                            {
+                                trainer.setPricePerhour(reader.GetInt32(5));
+                            }
+                            catch
+                            {
+                                trainer.setPricePerhour(0);
+                            }
                         }
                     }
+                    finally
+                    {
+                        reader.Close();
+                    }
                 }
-                finally
-                {
-                    reader.Close();
-                }
+            }
+            catch
+            {
+
             }
             return trainer;
         }
@@ -209,37 +239,44 @@ namespace MYMLibrary
         public List<MeetModel> loadAllMeetingsFromDataBase(int ID, String tableName)
         {
             List<MeetModel> meetingList = new List<MeetModel>();
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
+            try
             {
-                connection.Open();
-                OracleCommand cmd;
-                string sql = String.Format("select * from meet_table WHERE {1}_table_id = {0}", ID, tableName);
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                OracleDataReader reader = cmd.ExecuteReader();
-                try
+                using (OracleConnection connection = new OracleConnection(OracleSQLConnector.GetConnectionString()))
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    OracleCommand cmd;
+                    string sql = String.Format("select * from meet_table WHERE {1}_table_id = {0}", ID, tableName);
+
+                    cmd = new OracleCommand(sql, connection);
+                    cmd.CommandType = CommandType.Text;
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    try
                     {
-                        MeetModel meeting = new MeetModel(
-                            reader.GetInt32(0),
-                            reader.GetInt32(5),
-                            reader.GetInt32(6),
-                            reader.GetInt32(7),
-                            reader.GetDateTime(1),
-                            reader.GetInt32(2),
-                            reader.GetInt32(3),
-                            reader.GetInt32(4));
-                        if (meeting.DateAndHour > DateTime.Now)
-                            meetingList.Add(meeting);
+                        while (reader.Read())
+                        {
+                            MeetModel meeting = new MeetModel(
+                                reader.GetInt32(0),
+                                reader.GetInt32(5),
+                                reader.GetInt32(6),
+                                reader.GetInt32(7),
+                                reader.GetDateTime(1),
+                                reader.GetInt32(2),
+                                reader.GetInt32(3),
+                                reader.GetInt32(4));
+                            if (meeting.DateAndHour > DateTime.Now)
+                                meetingList.Add(meeting);
+                        }
+                    }
+                    finally
+                    {
+                        reader.Close();
                     }
                 }
-                finally
-                {
-                    reader.Close();
-                }
+            }
+            catch
+            {
+
             }
             return meetingList;
         }

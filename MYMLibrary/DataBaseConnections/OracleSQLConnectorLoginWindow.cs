@@ -9,35 +9,39 @@ namespace MYMLibrary.DataBaseConnections
     public class OracleSQLConnectorLoginWindow : OracleSQLConnector
     {
 
-
-
-
         public int getIDFromDataBase(String tableName, String searchedValue)
         {
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnectorLoginWindow.GetConnectionString()))
+            try
             {
-                connection.Open();
-                OracleCommand cmd;
-
-                string sql = string.Format("select id from {0} WHERE email LIKE '{1}'", tableName, searchedValue);
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                OracleDataReader reader = cmd.ExecuteReader();
-                try
+                using (OracleConnection connection = new OracleConnection(OracleSQLConnectorLoginWindow.GetConnectionString()))
                 {
-                    if(reader.Read())
+                    connection.Open();
+                    OracleCommand cmd;
+
+                    string sql = string.Format("select id from {0} WHERE email LIKE '{1}'", tableName, searchedValue);
+
+                    cmd = new OracleCommand(sql, connection);
+                    cmd.CommandType = CommandType.Text;
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    try
                     {
-                        int result = (reader.GetInt32(0));
+                        if (reader.Read())
+                        {
+                            int result = (reader.GetInt32(0));
+                            reader.Close();
+                            return result;
+                        }
+                    }
+                    finally
+                    {
                         reader.Close();
-                        return result;
                     }
                 }
-                finally
-                {
-                    reader.Close();
-                }
+            }
+            catch
+            {
+                return -1;
             }
             return -1;
         }
@@ -81,32 +85,38 @@ namespace MYMLibrary.DataBaseConnections
         {
             PersonModel person = new PersonModel();
             personTableID = -1;
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnectorLoginWindow.GetConnectionString()))
+            try
             {
-                connection.Open();
-                OracleCommand cmd;
-
-                string sql = String.Format("select * from {0} WHERE email LIKE '{1}'", tableName, email);
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                OracleDataReader reader = cmd.ExecuteReader();
-                try
+                using (OracleConnection connection = new OracleConnection(OracleSQLConnectorLoginWindow.GetConnectionString()))
                 {
-                    if (reader.Read())
-                    {
-                        person.setID(reader.GetInt32(0));
-                        person.setPassword(reader.GetString(1));
-                        personTableID = reader.GetInt32(2);
-                        person.setEmailAddress(reader.GetString(3));
+                    connection.Open();
+                    OracleCommand cmd;
 
+                    string sql = String.Format("select * from {0} WHERE email LIKE '{1}'", tableName, email);
+
+                    cmd = new OracleCommand(sql, connection);
+                    cmd.CommandType = CommandType.Text;
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    try
+                    {
+                        if (reader.Read())
+                        {
+                            person.setID(reader.GetInt32(0));
+                            person.setPassword(reader.GetString(1));
+                            personTableID = reader.GetInt32(2);
+                            person.setEmailAddress(reader.GetString(3));
+
+                        }
+                    }
+                    finally
+                    {
+                        reader.Close();
                     }
                 }
-                finally
-                {
-                    reader.Close();
-                }
+            }catch
+            {
+
             }
             return person;
         }

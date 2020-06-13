@@ -91,32 +91,37 @@ namespace MYMUI
         private bool isUniqueValue(String columnName, String tableName, String searchedValue)
         {
             bool success = false;
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnectorLoginWindow.GetConnectionString()))
+            try
             {
-                connection.Open();
-                OracleCommand cmd;
-
-                string sql = String.Format("select {0} from {1} WHERE {0} LIKE '{2}'", columnName, tableName, searchedValue);
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                OracleDataReader reader = cmd.ExecuteReader();
-                try
+                using (OracleConnection connection = new OracleConnection(OracleSQLConnectorLoginWindow.GetConnectionString()))
                 {
-                    if(reader.Read())
+                    connection.Open();
+                    OracleCommand cmd;
+
+                    string sql = String.Format("select {0} from {1} WHERE {0} LIKE '{2}'", columnName, tableName, searchedValue);
+
+                    cmd = new OracleCommand(sql, connection);
+                    cmd.CommandType = CommandType.Text;
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    try
                     {
-                        success = false;
+                        if (reader.Read())
+                        {
+                            success = false;
+                        }
+                        else
+                        {
+                            success = true;
+                        }
                     }
-                    else
+                    finally
                     {
-                        success = true;
+                        reader.Close();
                     }
                 }
-                finally
-                {
-                    reader.Close();
-                }
+            }catch
+            {
             }
             return success;
         }
@@ -124,42 +129,49 @@ namespace MYMUI
 
         private void insertUserToDataBase(PersonModel p, String password, String mainTableName)
         {
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnectorLoginWindow.GetConnectionString()))
+            try
             {
-                connection.Open();
-                OracleCommand cmd;
-
-                string sql = String.Format("INSERT INTO {4}(first_name, last_name, email, phone_number) VALUES('{0}', '{1}', '{2}', '{3}')", p.getFirstName(), p.getLastName(), p.getEmailAddress(), p.getPhoneNumberStr(), mainTableName);
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                int rowsUpdated = cmd.ExecuteNonQuery();
-                if (rowsUpdated == 0)
+                using (OracleConnection connection = new OracleConnection(OracleSQLConnectorLoginWindow.GetConnectionString()))
                 {
-                    //label.Content = "Record not inserted";
-                }
-                else
-                {
-                    String secondaryTableName;
-                    if (mainTableName.Equals("user_table"))
-                    {
-                        secondaryTableName = "user_password_table";
-                    }else
-                    {
-                        secondaryTableName = "trainer_password_table";
-                    }
-                    sql = String.Format("INSERT INTO {3}(password, {4}_id, email) VALUES('{0}', {1}, '{2}')", password, oracleSQLConnectorLoginWindow.getIDFromDataBase(mainTableName, p.getEmailAddress()), p.getEmailAddress(), secondaryTableName, mainTableName);
+                    connection.Open();
+                    OracleCommand cmd;
+
+                    string sql = String.Format("INSERT INTO {4}(first_name, last_name, email, phone_number) VALUES('{0}', '{1}', '{2}', '{3}')", p.getFirstName(), p.getLastName(), p.getEmailAddress(), p.getPhoneNumberStr(), mainTableName);
 
                     cmd = new OracleCommand(sql, connection);
                     cmd.CommandType = CommandType.Text;
-                    rowsUpdated = cmd.ExecuteNonQuery();
 
-                    if(rowsUpdated == 0)
+                    int rowsUpdated = cmd.ExecuteNonQuery();
+                    if (rowsUpdated == 0)
                     {
-                        // error drop previous insert
+                        //label.Content = "Record not inserted";
+                    }
+                    else
+                    {
+                        String secondaryTableName;
+                        if (mainTableName.Equals("user_table"))
+                        {
+                            secondaryTableName = "user_password_table";
+                        }
+                        else
+                        {
+                            secondaryTableName = "trainer_password_table";
+                        }
+                        sql = String.Format("INSERT INTO {3}(password, {4}_id, email) VALUES('{0}', {1}, '{2}')", password, oracleSQLConnectorLoginWindow.getIDFromDataBase(mainTableName, p.getEmailAddress()), p.getEmailAddress(), secondaryTableName, mainTableName);
+
+                        cmd = new OracleCommand(sql, connection);
+                        cmd.CommandType = CommandType.Text;
+                        rowsUpdated = cmd.ExecuteNonQuery();
+
+                        if (rowsUpdated == 0)
+                        {
+                            // error drop previous insert
+                        }
                     }
                 }
+            }catch
+            {
+
             }
         }
     }
