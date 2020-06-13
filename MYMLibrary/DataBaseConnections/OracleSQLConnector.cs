@@ -189,6 +189,10 @@ namespace MYMLibrary
                     }
                 }
             }
+            catch 
+            { 
+
+            } 
             return trainer;
         }
 
