@@ -11,7 +11,7 @@
         Background="Transparent" Foreground="#b3bcfc"
         FontWeight="DemiBold" FontFamily="Georgia"
         WindowStyle="None" ResizeMode="CanResizeWithGrip"
-        AllowsTransparency="True"
+        AllowsTransparency="True" MouseDown="Window_MouseDown"
         >
 
     <Border CornerRadius="20" BorderThickness="3" BorderBrush="#000" Background="{StaticResource GreyGridGradientBrush}">

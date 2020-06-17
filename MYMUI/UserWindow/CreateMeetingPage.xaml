@@ -103,7 +103,15 @@
                     <Grid Margin="0,2">
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding ImageBlob}" Width="50" Height="50"/>
+                                <Image Width="50" Height="50">
+                                    <Image.Source>
+                                        <Binding Path="ImageBlob">
+                                            <Binding.TargetNullValue>
+                                                <ImageSource>/Images/UserImageBasic.png</ImageSource>
+                                            </Binding.TargetNullValue>
+                                        </Binding>
+                                    </Image.Source>
+                                </Image>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="10">
                                 <StackPanel Orientation="Horizontal">

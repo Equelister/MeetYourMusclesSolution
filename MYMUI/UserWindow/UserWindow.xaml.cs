@@ -80,6 +80,12 @@ namespace MYMUI
                 SystemCommands.RestoreWindow(this);
             maximized = !maximized;
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left && Mouse.GetPosition(this).Y < 30)
+                this.DragMove();
+        }
     }
     
 }

@@ -12,7 +12,7 @@
         Background="Transparent" Foreground="#b3bcfc"
         FontWeight="DemiBold" FontFamily="Georgia" 
         WindowStyle="None"
-        AllowsTransparency="True"
+        AllowsTransparency="True" MouseDown="Window_MouseDown"
         >
 
 
@@ -33,10 +33,15 @@
                     Click="RegisterPageButton_Click"/>
             </StackPanel>
 
+            <Frame x:Name="LoginWindowFrameTopBar" NavigationUIVisibility="Hidden"
+                   Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"/>
+
             <Frame x:Name="LoginWindowFrame" NavigationUIVisibility="Hidden" 
                Grid.Column="1" Grid.ColumnSpan="3" 
                Grid.Row="2" Grid.RowSpan="12" />
 
+            
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

@@ -91,7 +91,7 @@ namespace MYMLibrary
                             }
                             catch
                             {
-                                trainer.setImageBlob(null);
+                                //trainer.setImageBlob(null);
                             }
                             trainerList.Add(trainer);
                         }
