@@ -14,7 +14,8 @@
         AllowsTransparency="True" MouseDown="Window_MouseDown"
         >
 
-    <Border CornerRadius="20" BorderThickness="3" BorderBrush="#000" Background="{StaticResource GreyGridGradientBrush}">
+    <Border CornerRadius="20" BorderThickness="3" BorderBrush="#000" 
+            Background="{StaticResource GreyGridGradientBrush}">
         <Grid>
             <StackPanel Grid.Column="12" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,10,0"
                     Orientation="Horizontal" HorizontalAlignment="Right">
@@ -43,6 +44,30 @@
                           HorizontalContentAlignment="Center"
                           Height="60"
                           FontSize="16" Content="{x:Static properties:MultiLanguage.CreatePlace}">
+                </ListViewItem>
+                <ListViewItem Selected="ListViewItem_Selected_2"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                          HorizontalContentAlignment="Center"
+                          Height="60"
+                          FontSize="16" Content="Change Color">
+                </ListViewItem>
+                <ListViewItem 
+                          x:Name="BlueColorListItem"
+                          Selected="ListViewItem_Selected_3"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                          HorizontalContentAlignment="Center"
+                          Height="60"
+                          FontSize="16" Content="Blue"
+                          Visibility="Collapsed">
+                </ListViewItem>
+                <ListViewItem 
+                          x:Name="RedColorListItem"
+                          Selected="ListViewItem_Selected_4"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                          HorizontalContentAlignment="Center"
+                          Height="60"
+                          FontSize="16" Content="Red"
+                          Visibility="Collapsed">
                 </ListViewItem>
             </ListView>
 

@@ -86,6 +86,33 @@ namespace MYMUI
             if (e.ChangedButton == MouseButton.Left && Mouse.GetPosition(this).Y < 30)
                 this.DragMove();
         }
+
+        private void ListViewItem_Selected_2(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (changeColorButtonBlue.Height == 0)
+            {
+                changeColorButtonBlue.Visibility = Visibility.Collapsed;
+                changeColorButtonRed.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                changeColorButtonBlue.Visibility = Visibility.Visible;
+                changeColorButtonRed.Visibility = Visibility.Visible;
+            }
+            */
+
+        }
+
+        private void ListViewItem_Selected_3(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("adada");
+        }
+
+        private void ListViewItem_Selected_4(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
     
 }

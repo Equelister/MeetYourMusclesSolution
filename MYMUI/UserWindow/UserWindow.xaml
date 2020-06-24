@@ -14,7 +14,8 @@
         AllowsTransparency="True" MouseDown="Window_MouseDown">
 
 
-    <Border CornerRadius="20" BorderThickness="3" BorderBrush="#000" Background="{StaticResource GreyGridGradientBrush}">
+    <Border CornerRadius="20" BorderThickness="3" BorderBrush="#000"
+            Background="{StaticResource GreyGridGradientBrush}">
         <Grid>
 
 
@@ -28,36 +29,145 @@
                 <Button x:Name="closeButton" Style="{StaticResource CustomCloseButtonStyle}" Click="closeButton_Click"/>
             </StackPanel>
 
-            <TextBlock x:Name="clockTextBlock" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                Text="Clock" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32"/>
+
+                <TextBlock x:Name="clockTextBlock" Text="Clock" Grid.Column="0" Grid.Row="1"
+                           Grid.ColumnSpan="2" Grid.RowSpan="2"
+                           VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontSize="32" Margin="0,10,0,40">
+
+                    <TextBlock.Foreground>
+                        <SolidColorBrush x:Name="clockColor" Color="#b3bcfc" />
+                    </TextBlock.Foreground>
+
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="0" x:Name="clockRotate" CenterX="30"/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+
+                <TextBlock.Triggers>
+                    <EventTrigger RoutedEvent="TextBlock.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetName="clockTextBlock" 
+                                    Storyboard.TargetProperty="(TextBlock.FontSize)"
+                                    From="24" To="32" Duration="0:0:10" 
+                                    AutoReverse="True" RepeatBehavior="Forever" />
+                                <ColorAnimation
+                                    Storyboard.TargetName="clockColor" 
+                                    Storyboard.TargetProperty="Color"
+                                    From="#b3bcfc" To="#516fc4"  Duration="0:0:10" 
+                                    AutoReverse="True" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </TextBlock.Triggers>
+            </TextBlock>
+
+            <StackPanel
+                Orientation="Vertical" 
+                Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="12" 
+                Background="Transparent">
+
+                <Button Content="{x:Static properties:MultiLanguage.MainPage}"
+                        Style="{StaticResource CustomMenuButtonStyle}"
+                        Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
+                        Click="ListViewItem_Selected">
+                </Button>
+                <Button Style="{StaticResource CustomMenuButtonStyle}"
+                        Content="{x:Static properties:MultiLanguage.CreateMeeting}"
+                        Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
+                        Click="ListViewItem_Selected_1">
+                </Button>
+
+                <StackPanel x:Name="changeColorPanel">
+
+                    <Button x:Name="changeColorButton"
+                        Content="Change Color" Style="{StaticResource CustomMenuButtonStyle}"
+                        Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
+                        Click="ListViewItem_Selected_2" Background="AliceBlue">
+    
+                </Button>
+                    <Button x:Name="changeColorButtonBlue"
+                        Content="Blue" Style="{StaticResource CustomMenuButtonStyle}"
+                        Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Height="0"
+                        Click="ListViewItem_Selected_3" >
+                    </Button>
 
 
-
-            <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="12" BorderThickness="0" 
-                   Background="Transparent" Foreground="#b3bcfc" FontFamily="Georgia"
-                      >
-                <ListViewItem Selected="ListViewItem_Selected"
-                          HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                          HorizontalContentAlignment="Center"
-                          Height="60"
-                          FontSize="16" Content="{x:Static properties:MultiLanguage.MainPage}">
-                </ListViewItem>
-                <ListViewItem Selected="ListViewItem_Selected_1"
-                          HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                          HorizontalContentAlignment="Center"
-                          Height="60"
-                          FontSize="16" Content="{x:Static properties:MultiLanguage.CreateMeeting}">
-                </ListViewItem>
-            </ListView>
+                    <Button x:Name="changeColorButtonRed"
+                        Content="Red" Style="{StaticResource CustomMenuButtonStyle}"
+                        Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Height="0"
+                        Click="ListViewItem_Selected_4">
+                    </Button>
 
 
+                    <StackPanel.Triggers>
+                        <EventTrigger RoutedEvent="StackPanel.MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                    Storyboard.TargetName="changeColorButtonBlue" 
+                                    Storyboard.TargetProperty="(Button.Height)"
+                                    From="0" To="60" Duration="0:0:001" 
+                                    />
+                                    <DoubleAnimation
+                                    Storyboard.TargetName="changeColorButtonRed" 
+                                    Storyboard.TargetProperty="(Button.Height)"
+                                    From="0" To="60" Duration="0:0:001" 
+                                    />
+                                    <DoubleAnimation
+                                    Storyboard.TargetName="changeColorButtonBlue" 
+                                    Storyboard.TargetProperty="(Button.Opacity)"
+                                    From="0" To="1" Duration="0:0:001" 
+                                    />
+                                    <DoubleAnimation
+                                    Storyboard.TargetName="changeColorButtonRed" 
+                                    Storyboard.TargetProperty="(Button.Opacity)"
+                                    From="0" To="1" Duration="0:0:001" 
+                                    />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="StackPanel.MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                    Storyboard.TargetName="changeColorButtonBlue" 
+                                    Storyboard.TargetProperty="(Button.Height)"
+                                    From="60" To="0" Duration="0:0:001" 
+                                    />
+                                    <DoubleAnimation
+                                    Storyboard.TargetName="changeColorButtonRed" 
+                                    Storyboard.TargetProperty="(Button.Height)"
+                                    From="60" To="0" Duration="0:0:001" 
+                                    />
+                                    <DoubleAnimation
+                                    Storyboard.TargetName="changeColorButtonBlue" 
+                                    Storyboard.TargetProperty="(Button.Opacity)"
+                                    From="1" To="0" Duration="0:0:001" 
+                                    />
+                                    <DoubleAnimation
+                                    Storyboard.TargetName="changeColorButtonRed" 
+                                    Storyboard.TargetProperty="(Button.Opacity)"
+                                    From="1" To="0" Duration="0:0:001" 
+                                    />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </StackPanel.Triggers>
+                </StackPanel>
+            </StackPanel> 
 
 
-
-            <Border BorderBrush="#000" BorderThickness="2" CornerRadius="4" Background="{StaticResource BlueGridGradientBrush}"
+            <Border BorderBrush="#000" BorderThickness="2" CornerRadius="4" 
+                    Background="{DynamicResource BlueGridGradientBrush}"
                     Grid.Column="2" Grid.ColumnSpan="12" 
                     Grid.Row="1" Grid.RowSpan="16"  >
-                <Frame x:Name="UserWindowFrame" NavigationUIVisibility="Hidden"/>
+                <Frame x:Name="UserWindowFrame" NavigationUIVisibility="Hidden"
+                       
+                       />
             </Border>
             
             <Grid.ColumnDefinitions>

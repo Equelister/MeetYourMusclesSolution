@@ -84,5 +84,29 @@ namespace MYMUI
             if (e.ChangedButton == MouseButton.Left && Mouse.GetPosition(this).Y < 30)
                 this.DragMove();
         }
+
+        private void ListViewItem_Selected_2(object sender, RoutedEventArgs e)
+        {
+            if(BlueColorListItem.IsVisible)
+            {
+                BlueColorListItem.Visibility = Visibility.Collapsed;
+                RedColorListItem.Visibility = Visibility.Collapsed;
+            }else
+            {
+                BlueColorListItem.Visibility = Visibility.Visible;
+                RedColorListItem.Visibility = Visibility.Visible;
+            }
+
+        }
+
+        private void ListViewItem_Selected_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ListViewItem_Selected_4(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
