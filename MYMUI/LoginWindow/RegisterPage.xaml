@@ -51,7 +51,7 @@
 
 
 
-        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="14">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="16">
 
             <TextBlock Text="{x:Static properties:MultiLanguage.FirstName}" Margin="0,0,0,5"/>
             <TextBox x:Name="firstNameTextBox" Style="{StaticResource CustomTextBox}" MaxHeight="24"/>
@@ -84,7 +84,13 @@
                     Content="{x:Static properties:MultiLanguage.Register}" 
                     HorizontalAlignment="Center" VerticalAlignment="Center" 
                     MinWidth="70"
-                    Margin="0,0,0,20" Click="registerButton_Click"/>
+                    Margin="0,0,0,10" Click="registerButton_Click"/>
+            <TextBlock x:Name="failedRegisterTextBlock"
+                Text="{x:Static properties:MultiLanguage.FailedRegisterText}" 
+                HorizontalAlignment="Center" Visibility="Collapsed"/>
+            <TextBlock x:Name="successRegisterTextBlock"
+                Text="{x:Static properties:MultiLanguage.SuccessRegisterText}" 
+                HorizontalAlignment="Center" Visibility="Collapsed"/>
         </StackPanel>
 
     </Grid>

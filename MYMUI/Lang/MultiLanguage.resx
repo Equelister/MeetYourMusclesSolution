@@ -168,6 +168,12 @@
   <data name="ErrorLabelFailedLogin" xml:space="preserve">
     <value>Invalid Data</value>
   </data>
+  <data name="Fail" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="FailedRegisterText" xml:space="preserve">
+    <value>Failed Register</value>
+  </data>
   <data name="FirstName" xml:space="preserve">
     <value>First Name: </value>
   </data>
@@ -221,6 +227,9 @@
   </data>
   <data name="Street" xml:space="preserve">
     <value>Street: </value>
+  </data>
+  <data name="SuccessRegisterText" xml:space="preserve">
+    <value>Register Successful!</value>
   </data>
   <data name="Trainer" xml:space="preserve">
     <value>Trainer:</value>

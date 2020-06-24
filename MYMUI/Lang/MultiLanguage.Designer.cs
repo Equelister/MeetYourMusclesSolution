@@ -423,5 +423,23 @@ namespace MYMUI.Lang {
                 return ResourceManager.GetString("ListBoxDuration", resourceCulture);
             }
         }
+        public static string FailedRegisterText
+        {
+            get
+            {
+                return ResourceManager.GetString("FailedRegisterText", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string SuccessRegisterText
+        {
+            get
+            {
+                return ResourceManager.GetString("SuccessRegisterText", resourceCulture);
+            }
+        }
     }
 }

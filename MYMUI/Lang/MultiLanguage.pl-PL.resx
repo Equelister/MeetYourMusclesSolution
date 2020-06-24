@@ -168,6 +168,9 @@
   <data name="ErrorLabelFailedLogin" xml:space="preserve">
     <value>Niepoprawne dane</value>
   </data>
+  <data name="FailedRegisterText" xml:space="preserve">
+    <value>Błąd przy rejeestracji</value>
+  </data>
   <data name="FirstName" xml:space="preserve">
     <value>Imię: </value>
   </data>
@@ -222,6 +225,9 @@
   <data name="Street" xml:space="preserve">
     <value>Ulica: </value>
   </data>
+  <data name="SuccessRegisterText" xml:space="preserve">
+    <value>Zarejestrowano pomyślnie!</value>
+  </data>
   <data name="Trainer" xml:space="preserve">
     <value>Trener: </value>
   </data>
@@ -236,5 +242,11 @@
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Witaj, </value>
+  </data>
+  <data name="FailedRegisterText" xml:space="preserve">
+    <value>Błąd Rejestracji!</value>
+  </data>
+  <data name="SuccessRegisterText" xml:space="preserve">
+    <value>Rejestracja zakończona pomyślnie!</value>
   </data>
 </root>

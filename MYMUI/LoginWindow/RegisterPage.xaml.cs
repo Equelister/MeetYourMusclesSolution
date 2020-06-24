@@ -53,6 +53,8 @@ namespace MYMUI
                 success = false;
             if (emailValue.Equals(null))
                 success = false;
+            if (!emailValue.Contains("@"))
+                success = false;
             if (!passwordPasswordBox.Password.Equals(retypePasswordPasswordBox.Password))
                 success = false;
 
@@ -68,6 +70,8 @@ namespace MYMUI
                     if (isEmailUnique)
                     {
                         insertUserToDataBase(u, passwordPasswordBox.Password, "user_table");
+                        failedRegisterTextBlock.Visibility = Visibility.Collapsed;
+                        successRegisterTextBlock.Visibility = Visibility.Visible;
                     }
                 }
                 else
@@ -78,11 +82,14 @@ namespace MYMUI
                     if (isEmailUnique)
                     {
                         insertUserToDataBase(t, passwordPasswordBox.Password, "trainer_table");
+                        failedRegisterTextBlock.Visibility = Visibility.Collapsed;
+                        successRegisterTextBlock.Visibility = Visibility.Visible;
                     }
                 }
             }else
             {
-                // label error, return
+                failedRegisterTextBlock.Visibility = Visibility.Visible;
+                successRegisterTextBlock.Visibility = Visibility.Collapsed;
             }
         }
 
