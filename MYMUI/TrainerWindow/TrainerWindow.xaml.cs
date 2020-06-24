@@ -50,12 +50,12 @@ namespace MYMUI
             clockTextBlock.Text = DateTime.Now.ToString(@"HH\:mm\:ss");
         }
 
-        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
+        private void mainPage_Click(object sender, RoutedEventArgs e)
         {
             TrainerWindowFrame.Content = mainTrainerPage;
         }
 
-        private void ListViewItem_Selected_1(object sender, RoutedEventArgs e)
+        private void createPlacePage_Click(object sender, RoutedEventArgs e)
         {
             TrainerWindowFrame.Content = CreatePlacePage;
         }
@@ -84,5 +84,21 @@ namespace MYMUI
             if (e.ChangedButton == MouseButton.Left && Mouse.GetPosition(this).Y < 30)
                 this.DragMove();
         }
+
+        private void BlueRectangle_Click(object sender, RoutedEventArgs e)
+        {
+            trainerWindowBorder.Background = (LinearGradientBrush)Application.Current.Resources["BlueGridGradientBrush"];
+        }
+
+        private void RedRectangle_Click(object sender, RoutedEventArgs e)
+        {
+            trainerWindowBorder.Background = (LinearGradientBrush)Application.Current.Resources["RedGridGradientBrush"];
+        }
+
+        private void GreenRectangle_Click(object sender, RoutedEventArgs e)
+        {
+            trainerWindowBorder.Background = (LinearGradientBrush)Application.Current.Resources["GreenGridGradientBrush"];
+        }
+
     }
 }

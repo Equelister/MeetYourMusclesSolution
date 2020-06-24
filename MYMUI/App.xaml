@@ -15,12 +15,25 @@
             <GradientStop Color="#cacbcc" Offset="0" />
             <GradientStop Color="#8a0000" Offset="0.9" />
             <GradientStop Color="#cacbcc" Offset="1" />
+            
         </LinearGradientBrush>
 
         <LinearGradientBrush x:Key="BlueGridGradientBrush" StartPoint="0,0" EndPoint="0,1">
             <GradientStop Offset="1" Color="#363a40"/>
             <GradientStop Offset="0" Color="#111b4a"/>
             <GradientStop Offset="0.7" Color="#21348a"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="RedGridGradientBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="1" Color="#363a40"/>
+            <GradientStop Offset="0" Color="#FF590702"/>
+            <GradientStop Offset="0.7" Color="#FF8B0F06"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="GreenGridGradientBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="1" Color="#363a40"/>
+            <GradientStop Offset="0" Color="#FF134D02"/>
+            <GradientStop Offset="0.7" Color="#FF118306"/>
         </LinearGradientBrush>
 
         <LinearGradientBrush x:Key="GreyGridGradientBrush" StartPoint="1,0" EndPoint="1,1">
@@ -44,6 +57,40 @@
             </Setter>
         </Style>
 
+        <Style x:Key="CustomMenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#b3bcfc"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="Opacity" Value="0.8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="26" BorderThickness="3" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard TargetProperty="Opacity">
+                            <DoubleAnimation From="0.8" To="1" Duration="0:0:2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard TargetProperty="Opacity">
+                            <DoubleAnimation From="1" To="0.8" Duration="0:0:2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        
         <Style x:Key="CustomCloseButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{StaticResource GrayRedGradientBrush}"/>
             <Setter Property="Foreground" Value="#000000"/>

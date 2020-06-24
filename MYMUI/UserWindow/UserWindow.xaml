@@ -29,35 +29,89 @@
             </StackPanel>
 
             <TextBlock x:Name="clockTextBlock" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                Text="Clock" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32"/>
+                Text="Clock" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32"
+                       >
+                <TextBlock.Foreground>
+                    <SolidColorBrush x:Name="clockColor" Color="#b3bcfc" />
+                </TextBlock.Foreground>
+
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="0" x:Name="clockRotate" CenterX="30"/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+
+                <TextBlock.Triggers>
+                    <EventTrigger RoutedEvent="TextBlock.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetName="clockTextBlock" 
+                                    Storyboard.TargetProperty="(TextBlock.FontSize)"
+                                    From="24" To="32" Duration="0:0:10" 
+                                    AutoReverse="True" RepeatBehavior="Forever" />
+                                <ColorAnimation
+                                    Storyboard.TargetName="clockColor" 
+                                    Storyboard.TargetProperty="Color"
+                                    From="#b3bcfc" To="#516fc4"  Duration="0:0:10" 
+                                    AutoReverse="True" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </TextBlock.Triggers>
+            </TextBlock>
 
 
 
-            <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="12" BorderThickness="0" 
-                   Background="Transparent" Foreground="#b3bcfc" FontFamily="Georgia"
-                      >
-                <ListViewItem Selected="ListViewItem_Selected"
-                          HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                          HorizontalContentAlignment="Center"
-                          Height="60"
-                          FontSize="16" Content="{x:Static properties:MultiLanguage.MainPage}">
-                </ListViewItem>
-                <ListViewItem Selected="ListViewItem_Selected_1"
-                          HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                          HorizontalContentAlignment="Center"
-                          Height="60"
-                          FontSize="16" Content="{x:Static properties:MultiLanguage.CreateMeeting}">
-                </ListViewItem>
-            </ListView>
+            <StackPanel
+                Orientation="Vertical" 
+                Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="12" 
+                Background="Transparent">
+
+                <Button Content="{x:Static properties:MultiLanguage.MainPage}"
+                        Style="{StaticResource CustomMenuButtonStyle}"
+                        Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
+                        Click="mainPage_Click">
+                </Button>
+                <Button Style="{StaticResource CustomMenuButtonStyle}"
+                        Content="{x:Static properties:MultiLanguage.CreateMeeting}"
+                        Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
+                        Click="createMeetingPlace_Click">
+                </Button>
+
+                <StackPanel x:Name="changeColorPanel" Orientation="Horizontal" Margin="10" 
+                            VerticalAlignment="Bottom" HorizontalAlignment="Center">
+
+                    <Rectangle x:Name="changeColorButtonBlue"
+                        Fill="DarkBlue" Height="20" Width="30"
+                        Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"
+                        MouseLeftButtonDown="BlueRectangle_Click">
+                    </Rectangle>
+                    <Rectangle x:Name="changeColorButtonRed"
+                        Fill="DarkRed" Height="20" Width="30"
+                        Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"
+                        MouseLeftButtonDown="RedRectangle_Click">
+                    </Rectangle>
+                    <Rectangle x:Name="changeColorButtonGreen"
+                        Fill="DarkGreen" Height="20" Width="30"
+                        Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"
+                        MouseLeftButtonDown="GreenRectangle_Click">
+                    </Rectangle>
+                </StackPanel>
+            </StackPanel>
 
 
 
 
 
-            <Border BorderBrush="#000" BorderThickness="2" CornerRadius="4" Background="{StaticResource BlueGridGradientBrush}"
+            <Border x:Name="userWindowBorder"
+                    BorderBrush="#000" BorderThickness="2" CornerRadius="4" Background="{DynamicResource BlueGridGradientBrush}"
                     Grid.Column="2" Grid.ColumnSpan="12" 
                     Grid.Row="1" Grid.RowSpan="16"  >
                 <Frame x:Name="UserWindowFrame" NavigationUIVisibility="Hidden"/>
+
+
+                
             </Border>
             
             <Grid.ColumnDefinitions>
