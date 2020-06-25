@@ -1,8 +1,6 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace MYMLibrary.DataBaseConnections
 {
@@ -45,41 +43,6 @@ namespace MYMLibrary.DataBaseConnections
             }
             return -1;
         }
-
-        /*
-        public static String getColumnFromDataBaseForID(String columnName, String tableName, int personID)
-        {
-            String password;
-            using (OracleConnection connection = new OracleConnection(OracleSQLConnectorLoginWindow.GetConnectionString()))
-            {
-                connection.Open();
-                OracleCommand cmd;
-
-                string sql = String.Format("select {0} from {1} WHERE id = {2}", columnName, tableName, personID);
-
-                cmd = new OracleCommand(sql, connection);
-                cmd.CommandType = CommandType.Text;
-
-                OracleDataReader reader = cmd.ExecuteReader();
-                try
-                {
-                    if (reader.Read())
-                    {
-                        password = reader.GetString(0);
-                    }
-                    else
-                    {
-                        password = null;
-                    }
-                }
-                finally
-                {
-                    reader.Close();
-                }
-            }
-            return password;
-        }
-        */
 
         public PersonModel getAllFromDataBaseForEmail(String tableName, String email, out int personTableID)
         {

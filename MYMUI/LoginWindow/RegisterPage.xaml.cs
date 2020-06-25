@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using MYMLibrary;
 using MYMLibrary.DataBaseConnections;
+using MYMLibrary.Validators;
 using Oracle.ManagedDataAccess.Client;
 
 namespace MYMUI
@@ -38,29 +30,16 @@ namespace MYMUI
         /// <param name="e"></param>
         private void registerButton_Click(object sender, RoutedEventArgs e)
         {
-            bool success = true;
             String firstNameValue = firstNameTextBox.Text.Trim();
             String lastNameValue = lastNameTextBox.Text.Trim();
             String emailValue = emailTextBox.Text.Trim();
             String phoneNumberStringValue = phoneNumberTextBox.Text.Trim();
-
-      
-
-
-            if (firstNameValue.Equals(null))
-                success = false;
-            if (lastNameValue.Equals(null))
-                success = false;
-            if (emailValue.Equals(null))
-                success = false;
-            if (!emailValue.Contains("@"))
-                success = false;
-            if (!passwordPasswordBox.Password.Equals(retypePasswordPasswordBox.Password))
-                success = false;
+            String passwordValue = passwordPasswordBox.Password.Trim();
+            String retypedPasswordValue = retypePasswordPasswordBox.Password.Trim();
+            RegisterPageValidator validator = new RegisterPageValidator();
 
 
-
-            if (success)
+            if (validator.IsInputedDataValid(firstNameValue, lastNameValue, emailValue, phoneNumberStringValue, passwordValue, retypedPasswordValue))
             {
                 if (userRadioButton.IsChecked == true)
                 {
@@ -92,8 +71,6 @@ namespace MYMUI
                 successRegisterTextBlock.Visibility = Visibility.Collapsed;
             }
         }
-
-
 
         private bool isUniqueValue(String columnName, String tableName, String searchedValue)
         {
