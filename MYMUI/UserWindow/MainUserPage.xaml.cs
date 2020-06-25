@@ -110,6 +110,9 @@ namespace MYMUI
         {
             acceptedMeetingsList.Clear();
             pendingMeetingsList.Clear();
+            acceptedMeetingsListBox.ItemsSource = null;
+            pendingMeetingsListBox.ItemsSource = null;
+
             //acceptedMeetingsListBox.Items.Clear();
             //pendingMeetingsListBox.Items.Clear();
             loadData();

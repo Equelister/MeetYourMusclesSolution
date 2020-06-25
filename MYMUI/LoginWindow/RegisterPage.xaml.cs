@@ -52,6 +52,11 @@ namespace MYMUI
                         failedRegisterTextBlock.Visibility = Visibility.Collapsed;
                         successRegisterTextBlock.Visibility = Visibility.Visible;
                     }
+                    else
+                    {
+                        failedRegisterTextBlock.Visibility = Visibility.Visible;
+                        successRegisterTextBlock.Visibility = Visibility.Collapsed;
+                    }
                 }
                 else
                 {
@@ -63,6 +68,11 @@ namespace MYMUI
                         insertUserToDataBase(t, passwordPasswordBox.Password, "trainer_table");
                         failedRegisterTextBlock.Visibility = Visibility.Collapsed;
                         successRegisterTextBlock.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        failedRegisterTextBlock.Visibility = Visibility.Visible;
+                        successRegisterTextBlock.Visibility = Visibility.Collapsed;
                     }
                 }
             }else
